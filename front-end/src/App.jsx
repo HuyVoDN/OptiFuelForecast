@@ -1,16 +1,15 @@
-import { useState } from 'react';
 import { createBrowserRouter, RouterProvider, Route, Outlet } from 'react-router-dom';
-import Footer from "./components/Footer.jsx";
+import Footer from "./components/footer/Footer.jsx";
 import Home from "./pages/Home.jsx";
-import Navibar from "./components/Navbar.jsx";
-import Register from "./pages/Register.jsx";
-import Login from "./pages/Login.jsx";
+import Header from "./components/header/Header.jsx";
+import Register from "./pages/auth/Register.jsx";
+import Login from "./pages/auth/Login.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./scss/styles.scss";
 const Layout = () => {
     return (
         <>
-        <Navibar />
+        <Header />
         <Outlet />
         <Footer />
         </>
