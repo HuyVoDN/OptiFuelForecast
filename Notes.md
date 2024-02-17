@@ -6,3 +6,6 @@ I think we can go ahead and start to delete the templates installed from Vite to
 ### Huy - 2/16/2024
 Customer Page - Input their fuel suggestion, and then we make the prediction using our api to do math.
 Admin Page - manually adjust fuel rate, the math behind it, basically just doing the backend work using an interface?
+
+### Huy - 2/17/2024
+Keep things simple for now, don't have to overdo it.
