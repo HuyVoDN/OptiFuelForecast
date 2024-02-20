@@ -16,7 +16,7 @@ Will add later...
 Install the dependencies for each folder
 > cd back-end ---> npm i
 Run the project
- + For back end do
++ For back end do
 >   cd back-end ---> npm start
 + For front end do
 >   cd front-end ---> npm run dev

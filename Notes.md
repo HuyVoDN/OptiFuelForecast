@@ -9,3 +9,6 @@ Admin Page - manually adjust fuel rate, the math behind it, basically just doing
 
 ### Huy - 2/17/2024
 Keep things simple for now, don't have to overdo it.
+
+### 2/19/2024
+After project we can add light/dark mode, would be dope.
