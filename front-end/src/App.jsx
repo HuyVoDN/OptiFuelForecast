@@ -1,24 +1,24 @@
 import { createBrowserRouter, RouterProvider, Route, Outlet } from 'react-router-dom';
 import Footer from "./components/footer/Footer.jsx";
+import About from "./pages/About.jsx";
 import Home from "./pages/Home.jsx";
 import Header from "./components/header/Header.jsx";
 import Register from "./pages/auth/Register.jsx";
 import Login from "./pages/auth/Login.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import "./scss/styles.scss";
 const Layout = () => {
     return (
         <>
         <Header />
         <Outlet />
-        <Footer />
         </>
     );
 };
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout />,
+        element: <Layout />
+        ,
         children: [
             {
                 path: "/",
@@ -34,6 +34,15 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login/>
     },
+    {
+        path: "/about",
+        element: <About />
+    }
+    ,
+    {
+        path: "*",
+        element: <h1>Not Found</h1>
+    }
 ]);
 function App() {
     return (

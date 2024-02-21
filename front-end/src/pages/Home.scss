@@ -1,0 +1,42 @@
+
+.home{
+    background-repeat: no-repeat;
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100vh;
+    margin: 0;
+   
+    .desc
+    {
+       
+        margin:0px;
+        color: white;
+        h1
+        {
+            
+            font-weight: bolder;
+            font-size: 3rem;
+            text-align: left;
+            align-items: flex-start;
+            justify-content: center;
+        }
+        p
+        {
+            margin-bottom: 2px;
+        }
+
+        .link
+        {
+            font-size:18px;
+            font-weight:bold;
+            color: rgb(255, 255, 255);
+            text-decoration: none;    
+            transition: 0.2s color ease-in-out; 
+            &:hover{
+                color: rgb(0, 0, 0);
+                text-decoration: none;}
+        }
+    }
+    
+}
