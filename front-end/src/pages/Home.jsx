@@ -18,7 +18,6 @@ const Home = () => {
                     </p>
                     <Link className="link" to="/about">Learn more</Link>
                 </div>
-
             </div>
         
     );
