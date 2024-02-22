@@ -1,0 +1,69 @@
+.sidebar
+{
+    display:flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    margin: 0 4rem;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    .client-profile
+    {
+        img
+        {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin: 0;
+        }
+        h1
+        {
+            font-size:3rem;
+            color: rgb(0, 0, 112);
+        }
+    }
+    .sidebar-menu-items
+    {
+        list-style: none;
+       
+        .item-style
+        {
+            color:rgb(173, 173, 173);
+        }
+        .item-style:hover
+        {
+            color:rgb(0, 0, 112);
+        }
+        .sidebar-text
+        {
+            margin:15px -20px;
+            
+            .sidebar-link 
+            {
+                font-size:30px;
+                text-decoration: none;
+            }
+
+            .active-link
+            {
+                color:black;
+            }
+        }
+
+       .signout-btn
+       {
+            margin:15px -20px;
+
+            button
+            {
+                background: none;
+                padding:0px;
+                border:none;
+                
+                font-size:30px;
+        }
+        
+       }
+    }
+       
+       
+}
