@@ -1,5 +1,6 @@
 import React from 'react'
-
+import "./About.scss";
+import Sidebar from '../components/sidebar/Sidebar';
 const About = () => {
   return (
     <div>

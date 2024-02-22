@@ -1,16 +1,19 @@
 
 .home{
+    background-image: url('https://cdn.hswstatic.com/gif/gettyimages-ec2879-002.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
     background-repeat: no-repeat;
     display:flex;
     align-items: center;
     justify-content: flex-start;
-    height: 100vh;
     margin: 0;
    
     .desc
     {
-       
-        margin:0px;
+        animation: slideIn 1.5s cubic-bezier(0.2, 0.5, 0.2, 0.5) 0.5s forwards;
+        margin:0 200px;
         color: white;
         h1
         {
@@ -21,6 +24,7 @@
             align-items: flex-start;
             justify-content: center;
         }
+
         p
         {
             margin-bottom: 2px;
@@ -39,4 +43,18 @@
         }
     }
     
+}
+@keyframes slideIn{
+    0% {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      50% {
+        transform: translateX(-10%);
+        opacity: 0.5;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
 }
