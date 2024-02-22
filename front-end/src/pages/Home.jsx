@@ -1,11 +1,12 @@
 import React from "react";
 import "./Home.scss";
 import { Link } from "react-router-dom";
-
+import Sidebar from "../components/sidebar/Sidebar.jsx";
 const Home = () => {
     return (
             <div className="home">
                 <div className="desc">
+                    <Sidebar/>
                     <h1>We explore to <br />empower</h1>
                     <p>
                         Our cutting-edge oil fuel forecast system utilizes

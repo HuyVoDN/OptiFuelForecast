@@ -6,6 +6,7 @@ import Header from "./components/header/Header.jsx";
 import Register from "./pages/auth/Register.jsx";
 import Login from "./pages/auth/Login.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 const Layout = () => {
     return (
         <>
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register/>
+        
     },
     {
         path: "/login",
@@ -36,13 +38,14 @@ const router = createBrowserRouter([
     },
     {
         path: "/about",
-        element: <About />
+        element: <About/>
     }
     ,
     {
         path: "*",
         element: <h1>Not Found</h1>
-    }
+    },
+   
 ]);
 function App() {
     return (
