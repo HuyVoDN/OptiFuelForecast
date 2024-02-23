@@ -6,6 +6,7 @@ import Header from "./components/header/Header.jsx";
 import Register from "./pages/auth/Register.jsx";
 import Login from "./pages/auth/Login.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import ClientProfile from './pages/ClientProfile.jsx';
 const Layout = () => {
     return (
         <>
@@ -42,6 +43,11 @@ const router = createBrowserRouter([
     {
         path: "*",
         element: <h1>Not Found</h1>
+    },
+    {
+        path: "/user/profile",
+        element: <ClientProfile />
+    
     }
 ]);
 function App() {

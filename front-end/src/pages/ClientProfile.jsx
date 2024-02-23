@@ -1,8 +1,11 @@
 import React from 'react';
-
+import Sidebar from '../components/sidebar/Sidebar';
+import './ClientProfile.scss';
 class ClientProfile extends React.Component {
     render() {
         return (
+            <>
+            <Sidebar />
             <div className="container">
                 <h1>My Profile</h1>
                 <form id="client-profile-form">
@@ -35,6 +38,7 @@ class ClientProfile extends React.Component {
                     </div>
                 </form>
             </div>
+            </>
         );
     }
 }
