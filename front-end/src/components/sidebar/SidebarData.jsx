@@ -8,7 +8,8 @@ export const SidebarData = [
     },
     {
         title:"Fuel Quotes",
-        path:'/user/fuelquotes',
+        // path:'./FuelQuoteForm.jsx',
+        path: 'src/pages/FuelQuoteForm.jsx',
         cName:'sidebar-text'
     },
     {

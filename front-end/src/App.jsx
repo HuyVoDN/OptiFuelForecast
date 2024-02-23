@@ -5,6 +5,7 @@ import Home from "./pages/Home.jsx";
 import Header from "./components/header/Header.jsx";
 import Register from "./pages/auth/Register.jsx";
 import Login from "./pages/auth/Login.jsx";
+import Quote from "./pages/FuelQuoteForm.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Layout = () => {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login/>
+    },
+    {
+        path: "/quote",
+        element: <Quote/>
     },
     {
         path: "/about",
