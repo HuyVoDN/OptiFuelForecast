@@ -7,7 +7,7 @@ const Navbar = () => {
     return (
        <>
        <div className="mainnavbar">
-            <Link to='/'><img className="optiLogo" src="src/assets/optifuelforecastlogo.png" alt="logo" /></Link>
+            <Link to='/'><img className="optiLogo" src={Logo} alt="logo" /></Link>
             <div className="mainnavbar-right">
                 <nav className="mainnavbar-links">
                     <NavLink className="link" to='/'>Home</NavLink>
