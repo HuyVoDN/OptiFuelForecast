@@ -35,8 +35,8 @@ class ClientProfile extends React.Component {
                         <label htmlFor="zipcode">Zipcode:</label>
                         <input type="text" id="zipcode" name="zipcode" required />
                     </div>
-                    <div className="button">
-                        <button>Save</button>
+                    <div >
+                        <button className='button'>Save</button>
                     </div>
                 </form>
             </div>
