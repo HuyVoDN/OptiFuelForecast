@@ -1,13 +1,13 @@
 import React from "react";
 import "./Home.scss";
 import { Link } from "react-router-dom";
-import Sidebar from "../components/sidebar/Sidebar.jsx";
+
 
 const Home = () => {
     return (
         <>
             <div className="home">
-            <Sidebar />
+            
                 <div className="desc">
                    
                     <h1>We explore to <br />empower</h1>
