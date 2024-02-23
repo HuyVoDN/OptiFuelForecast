@@ -4,13 +4,14 @@ import About from "./pages/About.jsx";
 import Home from "./pages/Home.jsx";
 import Register from "./pages/auth/Register.jsx";
 import Login from "./pages/auth/Login.jsx";
+import Navbar from "./components/navbar/Navbar.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Layout = () => {
     return (
         <>
-        <Navbar />
-        <Outlet />
+            <Navbar />
+            <Outlet />
         </>
     );
 };
@@ -21,9 +22,18 @@ const router = createBrowserRouter([
         ,
         children: [
             {
+                path: "/about",
+                element: <About/>
+            },
+            {
+                path: "/login",
+                element: <Login/>
+            },
+            {
                 path: "/",
                 element: <Home />
             },
+            
         ]
     },
     {
@@ -32,15 +42,6 @@ const router = createBrowserRouter([
         
     },
     {
-        path: "/login",
-        element: <Login/>
-    },
-    {
-        path: "/about",
-        element: <About/>
-    }
-    ,
-    {
         path: "*",
         element: <h1>Not Found</h1>
     },
@@ -48,7 +49,7 @@ const router = createBrowserRouter([
 ]);
 function App() {
     return (
-                <RouterProvider router={router} />   
+        <RouterProvider router={router} />   
     );
 }
 
