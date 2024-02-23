@@ -1,10 +1,12 @@
 import React from 'react';
 import Sidebar from '../components/sidebar/Sidebar';
 import './ClientProfile.scss';
+import Navbar from '../components/navbar/Navbar';
 class ClientProfile extends React.Component {
     render() {
         return (
             <>
+            <Navbar />
             <Sidebar />
             <div className="container">
                 <h1>My Profile</h1>
