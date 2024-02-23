@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider, Route, Outlet } from 'react-router
 import Footer from "./components/footer/Footer.jsx";
 import About from "./pages/About.jsx";
 import Home from "./pages/Home.jsx";
-import Register from "./pages/auth/Register.jsx";
+import Signup from "./pages/auth/signup/Signup.jsx";
 import Login from "./pages/auth/login/Login.jsx";
 import Navbar from "./components/navbar/Navbar.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -37,8 +37,15 @@ const router = createBrowserRouter([
         ]
     },
     {
-        path: "/register",
-        element: <Register/>
+        path: "/signup",
+        element: <Layout />
+        ,
+        children: [
+            {
+                path: "/signup",
+                element: <Signup />
+            },
+        ]
     },
     {
         path: "/login",

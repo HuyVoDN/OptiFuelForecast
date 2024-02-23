@@ -25,8 +25,6 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -35,21 +33,19 @@ const Login = () => {
     <div className="login-container">
       <div className="login-form">
         <h1>Login</h1>
-      <FormControl sx={{ m: 1, width: '75%', marginTop:'35px'}} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-email">Email *</InputLabel>
-          <OutlinedInput
-            required
-            value={email}
-            onChange={(e)=>setEmail(e.target.value)} 
-            id="outlined-adornment-email"
-            type='text'
-            label="Email"
-          />
+        <FormControl required sx={{ m: 1, width: '75%', marginTop:'35px'}} variant="outlined">
+        <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
+        <OutlinedInput
+          value={email}
+          onChange={(e)=>setEmail(e.target.value)} 
+          id="outlined-adornment-email"
+          type='text'
+          label="Email"
+        />
         </FormControl>
-        <FormControl sx={{ m: 1, width: '75%', marginBottom:'8px' }} variant="outlined">
-          <InputLabel htmlFor="outlined-adornment-password">Password *</InputLabel>
+        <FormControl required sx={{ m: 1, width: '75%', marginBottom:'8px' }} variant="outlined">
+          <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
           <OutlinedInput
-            required
             value={password}
             onChange={(e)=>setPassword(e.target.value)} 
             id="outlined-adornment-password"
@@ -58,7 +54,7 @@ const Login = () => {
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
+                  onClick={()=>setShowPassword(!showPassword)}
                   onMouseDown={handleMouseDownPassword}
                   edge="end"
                 >
@@ -75,7 +71,7 @@ const Login = () => {
           <button className="login-button" onClick={handleLogin}>
               Login
           </button>
-        <div>
+        <div className="signup-text">
           New user? <Link className="link" to='/signup'>Sign up here</Link>
         </div>
       </div>
