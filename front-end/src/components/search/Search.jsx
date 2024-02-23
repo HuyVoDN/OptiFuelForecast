@@ -8,7 +8,8 @@ const Search = () => {
   return (
     <Paper className="searchbutton"
       component="form"
-      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 200, borderRadius: "20px", backgroundColor: '#f1f1f1'}}
+      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', 
+            width: 200, borderRadius: "20px", backgroundColor: '#f1f1f1'}}
       elevation={0}
     >
         <IconButton type="button" sx={{ p: '5px' }} aria-label="search">

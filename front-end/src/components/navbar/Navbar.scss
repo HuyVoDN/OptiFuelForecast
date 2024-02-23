@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .mainnavbar {
     position: sticky;
     background-color: white;
@@ -13,6 +15,7 @@
 
     .optiLogo {
         height: 100%;
+        width: 240px;
         margin-left: 15px;
     }
 
@@ -20,7 +23,8 @@
         display: flex;
 
         .mainnavbar-links {
-            font-family: "Roboto", sans-serif;
+            font-family: 'Roboto', sans-serif;
+            letter-spacing: 0.6px;
             font-weight: 300;
             font-style: normal;
             display: flex;

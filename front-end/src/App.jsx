@@ -7,7 +7,7 @@ import Login from "./pages/auth/Login.jsx";
 import Quote from "./pages/FuelQuoteForm.jsx";
 import Navbar from "./components/navbar/Navbar.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import ClientProfile from './pages/ClientProfile.jsx';
 const Layout = () => {
     return (
         <>
@@ -40,8 +40,16 @@ const router = createBrowserRouter([
     {
         path: "/register",
         element: <Register/>
-        
     },
+    {
+        path: "/login",
+        element: <Login/>
+    },
+    {
+        path: "/about",
+        element: <About />
+    }
+    ,
     {
         path: "/login",
         element: <Login/>
@@ -59,11 +67,15 @@ const router = createBrowserRouter([
         path: "*",
         element: <h1>Not Found</h1>
     },
-   
+    {
+        path: "/user/profile",
+        element: <ClientProfile />
+        // hardcoding rn so we'll have to change this later
+    }
 ]);
 function App() {
     return (
-        <RouterProvider router={router} />   
+            <RouterProvider router={router} />   
     );
 }
 
