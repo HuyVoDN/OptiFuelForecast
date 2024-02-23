@@ -46,13 +46,8 @@ const router = createBrowserRouter([
         element: <Login/>
     },
     {
-        path: "/about",
-        element: <About />
-    }
-    ,
-    {
-        path: "/login",
-        element: <Login/>
+        path: "/ClientProfile",
+        element: <ClientProfile/>
     },
     {
         path: "/quote",
@@ -61,8 +56,7 @@ const router = createBrowserRouter([
     {
         path: "/about",
         element: <About/>
-    }
-    ,
+    },
     {
         path: "*",
         element: <h1>Not Found</h1>
