@@ -1,4 +1,4 @@
-# OptiFuel Forecast PRO PLUS VIP MAX ULTRA FE 255GB
+# OptiFuel Forecast
 
 
 ### Team Members
