@@ -57,7 +57,7 @@ const router = createBrowserRouter([
         element: <ClientProfile/>
     },
     {
-        path: "/quote",
+        path: "/user/quote",
         element: <Quote/>
     },
     {
