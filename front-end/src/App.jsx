@@ -34,45 +34,26 @@ const router = createBrowserRouter([
                 path: "/",
                 element: <Home />
             },
-            
-        ]
-    },
-    {
-        path: "/signup",
-        element: <Layout />
-        ,
-        children: [
             {
                 path: "/signup",
                 element: <Signup />
             },
+            {
+                path: "/user/quote",
+                element: <Quote/>
+            },
+            {
+                path: "/user/profile",
+                element: <ClientProfile />
+                // hardcoding rn so we'll have to change this later
+            }
+            
         ]
-    },
-    {
-        path: "/login",
-        element: <Login/>
-    },
-    {
-        path: "/ClientProfile",
-        element: <ClientProfile/>
-    },
-    {
-        path: "/user/quote",
-        element: <Quote/>
-    },
-    {
-        path: "/about",
-        element: <About/>
     },
     {
         path: "*",
         element: <h1>Not Found</h1>
     },
-    {
-        path: "/user/profile",
-        element: <ClientProfile />
-        // hardcoding rn so we'll have to change this later
-    }
 ]);
 function App() {
     return (

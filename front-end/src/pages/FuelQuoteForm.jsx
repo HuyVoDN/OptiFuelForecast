@@ -33,8 +33,9 @@ const Quote = () => {
     // const[ id, lastName, firstName, age ] = useState('');
 
     return (
+        <>
         <div className="fuel-quote-form">
-            <NavBar />
+            
 
             <div className="main-content">
                 <Sidebar />
@@ -148,6 +149,7 @@ const Quote = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 export default Quote
