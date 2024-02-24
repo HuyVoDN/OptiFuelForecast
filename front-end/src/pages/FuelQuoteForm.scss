@@ -51,6 +51,14 @@
                 margin-top: 60px; /* Increase the margin-bottom */
             }
 
+            .suggestedPrice-container {
+                background-color: #f0f0f0;
+                padding: 1px;
+                border-radius: 10px; 
+                text-align: center;
+                margin-bottom:40px;
+            }
+
             .output-container {
                 background-color: #f0f0f0;
                 padding: 1px;
@@ -60,12 +68,17 @@
 
             .TotalOutput{
                 font-weight: bold;
+                margin-bottom:40px;
                 margin-top: 10px;  /* Add margin on top for space */
                 margin-bottom: 5px;  /* Reduce margin at the bottom */
             }
               
-            .output-text {
+            .output-text { // hard coded for output and suggested Price
                 color: green;
+                font-weight: bold;
+            }
+            .output-text-suggestion {
+                color: rgb(247, 29, 0);
                 font-weight: bold;
             }
         }

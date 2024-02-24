@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
-import { TextField, Button } from '@mui/material';
+import { TextField, Button, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
 import Sidebar from '../components/sidebar/Sidebar';
 import './ClientProfile.scss';
-import Navbar from '../components/navbar/Navbar';
+
 const ClientProfile = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [address1, setAddress1] = useState('');
-    const [address2, setAddress2] = useState('');  
+    const [address2, setAddress2] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zipcode, setZipcode] = useState('');
 
     return (
         <div className="client-profile">
-            <Navbar />
             <div className="main-content">
                 <Sidebar />
                 <div className="container">
                     <h1>My Profile</h1>
                     <form id="client-profile-form">
                         <div className="form-row">
-                            
+
                             <TextField
                                 label="First Name"
                                 value={firstName}
@@ -59,7 +58,7 @@ const ClientProfile = () => {
                                 value={address2}
                                 variant='filled'
                                 onChange={e => setAddress2(e.target.value)}
-                               
+
                             />
                         </div>
 
@@ -72,14 +71,27 @@ const ClientProfile = () => {
                                 onChange={e => setCity(e.target.value)}
                                 required
                             />
-                            <TextField
-                                label="State"
-                                value={state}
-                                placeholder='TX'
-                                variant='filled'
-                                onChange={e => setState(e.target.value)}
-                                required
-                            />
+                            <FormControl required variant="filled" sx={{ minWidth: 200 }} >
+                                <InputLabel id="state-label">State</InputLabel>
+                                <Select
+                                    labelId="state-label"
+                                    value={state}
+
+                                    onChange={e => setState(e.target.value)}
+                                >
+                                    <MenuItem value={'TX'}>TX</MenuItem>
+                                    <MenuItem value={'NY'}>NY</MenuItem>
+                                    <MenuItem value={'CA'}>CA</MenuItem>
+                                    <MenuItem value={'FL'}>FL</MenuItem>
+                                    <MenuItem value={'PA'}>PA</MenuItem>
+                                    <MenuItem value={'IL'}>IL</MenuItem>
+                                    <MenuItem value={'OH'}>OH</MenuItem>
+                                    <MenuItem value={'GA'}>GA</MenuItem>
+                                    <MenuItem value={'NC'}>NC</MenuItem>
+                                    <MenuItem value={'MI'}>MI</MenuItem>
+                                    {/* Add more MenuItem components for other states */}
+                                </Select>
+                            </FormControl>
                             <TextField
                                 label="Zipcode"
                                 value={zipcode}

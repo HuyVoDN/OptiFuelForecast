@@ -101,20 +101,26 @@ const Quote = () => {
                                     required
                                 />
                         </div>
-                        <div className="form-row">
+                        {/* <div className="form-row">
                             <TextField
                                     label="Price Suggestion"
                                     value={SuggestedPrice}
-                                    style={{ width: '100%' }}
+                                    style={{ width: '100%'}}
                                     placeholder='$910,000'
                                     variant='filled'
                                     onChange={e => setSuggestedPrice(e.target.value)}
-                                    required
+                                
                                 />
+                        </div> */}
+
+                        <div className="suggestedPrice-container">
+                            <p className="TotalOutput"> Suggested Price </p>
+                            <p className="output-text-suggestion">$1,000,000</p>
                         </div>
+                        {/* hardcoded values for now, for both suggested price and output */}
                         <div className="output-container">
                             <p className="TotalOutput"> Total Price: </p>
-                            <p className="output-text">$1,000,000</p>
+                            <p className="output-text">$100,000,000</p>
                         </div>
                         <div className="form-group button-container">
                             <Button className="save-btn" variant="contained" color="primary" style={{ borderRadius: 50 }}>
