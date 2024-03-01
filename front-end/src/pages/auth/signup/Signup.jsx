@@ -28,6 +28,7 @@ function SignUpForm() {
         else {
             // let user know password no match :(
                 console.log("password no matchy...TT");
+                // is this what u learn at JPMorgan Sue?
         }
         
     };
