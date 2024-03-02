@@ -2,12 +2,14 @@ import express from 'express';
 import cors from 'cors';
 import { db } from './db.js';
 import authRoutes from './routes/auth.js';
+import testRoutes from './test.js';
+
 const app = express();
 
 app.use(cors({
   credentials: true,
   origin: ["http://localhost:5173"],
-  methods: ["GET,POST"],
+  methods: ["GET,POST, PATCH"],
 })
 );
 
@@ -32,3 +34,5 @@ app.get('/', (req, res) => {
 }); //test
 
 app.use('/auth', authRoutes);
+
+app.use('/', testRoutes);// testing for sql statements and db connection
