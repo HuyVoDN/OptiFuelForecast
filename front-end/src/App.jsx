@@ -41,11 +41,11 @@ const router = createBrowserRouter([
             {
                 path: "/user/quote",
                 element: <Quote/>
+                // hardcoded username for quoting, must change
             },
             {
-                path: "/user/profile",
+                path: "/:username/profile",
                 element: <ClientProfile />
-                // hardcoding rn so we'll have to change this later
             }
             
         ]

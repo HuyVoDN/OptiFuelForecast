@@ -21,3 +21,7 @@ After project we can add light/dark mode, would be dope.
 - I've finished with setting up the connection to the database, I have the .env file so I'll send yall that thru our server instead.
 - I'll help you guys setting up your AWS connection as well as the connection for MySQL Workbench and RDS.
 - I'll start doing the signup page and authentication now.
+
+### Huy - 3/2/2024
+- Finished with Registering Functionality, right now I'm making a new column within the database called username, so we can dynamically route according to the username, instead of an id of the user, since its harder to do so as well as security practices.
+- Will look at ClientProfile, and change the username on there accordingly.

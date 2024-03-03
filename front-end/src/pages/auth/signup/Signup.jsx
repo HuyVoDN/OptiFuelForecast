@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import "./Signup.scss";
 import { STATES } from '../../../constants/stateOptions';
@@ -11,26 +11,51 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import Axios from 'axios';
 
 function SignUpForm() {
     const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [error, setError] = useState(null);
+    const navigate = useNavigate();
 
     const handleSignup = (e) => {
         e.preventDefault();
         console.log('Email:', email);
         console.log('Password:', password);
-        console.log('Password:', confirmPassword);
+        console.log('Confirmed Password:', confirmPassword);
+
+        if (!email || !password || !confirmPassword || !username) 
+        {
+            setError('Please fill in all fields');
+            return;
+        }
+
         if (password === confirmPassword) {
             // login logic here (e.g., API call, authentication)
+            Axios.post('http://localhost:3000/auth/register', {
+                email: email,
+                password: password,
+                username: username,
+            }).then((response) => {
+                console.log(response);
+                navigate(`/${username}/profile`);
+                
+            }).catch((error) => {
+                console.log(error.response.data);
+                setError(error.response.data);
+            });
         }
-        else {
+        else 
+        {
             // let user know password no match :(
-                console.log("password no matchy...TT");
-                // is this what u learn at JPMorgan Sue?
+            console.log("password no matchy...TT");
+            setError('Passwords do not match');
+            // is this what u learn at JPMorgan Sue?
         }
-        
+
     };
 
     const [showPassword, setShowPassword] = useState(false);
@@ -44,31 +69,41 @@ function SignUpForm() {
         <div className="signup-container">
             <div className="signup-form">
                 <h1>Sign Up</h1>
-                <FormControl required sx={{ m: 1, width: '75%', marginTop:'35px'}} variant="outlined">
+                <FormControl required sx={{ m: 1, width: '75%', marginTop: '35px' }} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-email">Email</InputLabel>
                     <OutlinedInput
                         value={email}
-                        onChange={(e)=>setEmail(e.target.value)} 
+                        onChange={(e) => setEmail(e.target.value)}
                         id="outlined-adornment-email"
                         type='text'
                         label="Email"
                     />
                 </FormControl>
-                <FormControl required sx={{ m: 1, width: '75%', marginBottom:'8px' }} variant="outlined">
+                <FormControl required sx={{ m: 1, width: '75%', marginTop: '8px' }} variant="outlined">
+                    <InputLabel htmlFor="outlined-adornment-username">Username</InputLabel>
+                    <OutlinedInput
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        id="outlined-adornment-username"
+                        type='text'
+                        label="username"
+                    />
+                </FormControl>
+                <FormControl required sx={{ m: 1, width: '75%', marginBottom: '8px' }} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
                     <OutlinedInput
                         value={password}
-                        onChange={(e)=>setPassword(e.target.value)} 
+                        onChange={(e) => setPassword(e.target.value)}
                         id="outlined-adornment-password"
                         type={showPassword ? 'text' : 'password'}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
                                     aria-label="toggle password visibility"
-                                    onClick={()=>setShowPassword(!showPassword)}
+                                    onClick={() => setShowPassword(!showPassword)}
                                     onMouseDown={handleMouseDownPassword}
                                     edge="end"
-                                    >
+                                >
                                     {showPassword ? <VisibilityOff /> : <Visibility />}
                                 </IconButton>
                             </InputAdornment>
@@ -76,21 +111,21 @@ function SignUpForm() {
                         label="Password"
                     />
                 </FormControl>
-                <FormControl required sx={{ m: 1, width: '75%', marginBottom:'8px' }} variant="outlined">
+                <FormControl required sx={{ m: 1, width: '75%', marginBottom: '8px' }} variant="outlined">
                     <InputLabel htmlFor="outlined-adornment-confirm-password">Confirm Password</InputLabel>
                     <OutlinedInput
                         value={confirmPassword}
-                        onChange={(e)=>setConfirmPassword(e.target.value)} 
+                        onChange={(e) => setConfirmPassword(e.target.value)}
                         id="outlined-adornment-confirm-password"
                         type={showConfirmPassword ? 'text' : 'password'}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton
                                     aria-label="toggle password visibility"
-                                    onClick={()=>setShowConfirmPassword(!showConfirmPassword)}
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                                     onMouseDown={handleMouseDownPassword}
                                     edge="end"
-                                    >
+                                >
                                     {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
                                 </IconButton>
                             </InputAdornment>
@@ -98,6 +133,7 @@ function SignUpForm() {
                         label="ConfirmPassword"
                     />
                 </FormControl>
+                {error && <div className="error">{error}</div>}
                 <button className="signup-button" onClick={handleSignup}>
                     Sign Up
                 </button>
