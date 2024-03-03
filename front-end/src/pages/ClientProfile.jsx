@@ -14,7 +14,6 @@ const ClientProfile = () => {
     const [state, setState] = useState('');
     const [zipcode, setZipcode] = useState('');
     
-
     const [isEditing, setIsEditing] = useState(false);
     const { username } = useParams();
     const navigate = useNavigate();
@@ -113,8 +112,8 @@ const ClientProfile = () => {
                         <div className="form-row">
                             <TextField
                                 label="Address 2"
-                                fullWidth
                                 value={address2}
+                                fullWidth
                                 variant='filled'
                                 onChange={e => setAddress2(e.target.value)}
                                 disabled={!isEditing}

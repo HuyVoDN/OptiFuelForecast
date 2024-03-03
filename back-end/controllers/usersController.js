@@ -20,7 +20,6 @@ export const userData = (req, res) => {
         return res.status(200).json(result[0]);
     });
     
-    
     // make sql statement to pull the username so it can be called from the front end
     
 };

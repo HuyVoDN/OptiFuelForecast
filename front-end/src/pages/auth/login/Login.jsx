@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import './Login.scss';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -10,16 +10,50 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
-
-
+import { useNavigate } from "react-router-dom";
+import Axios from 'axios';
+//import { AuthContext } from '../../../context/authContext.jsx';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+  //const {login} = useContext(AuthContext);
 
-  const handleLogin = (e) => {
+  // do a get method to retrieve the username
+  const handleLogin = async (e) => {
     e.preventDefault();
     console.log('Email:', email);
     console.log('Password:', password);
+
+    Axios.post('http://localhost:3000/auth/login', {
+      email: email, 
+      password: password,
+    }).then((response) => {
+      const username = response.data.username;
+      console.log(response.data);
+      console.log('Username:', username);
+      navigate(`/${username}/profile`);
+      //navigate('/');
+    }).catch((error) => {
+      console.log(error.response.data);
+      setError(error.response.data);
+    });
+
+
+    // this is for authContext method, cannot figure out as of now
+    /*
+    try {
+      const response = await login({email, password});
+      console.log(response);
+      const username = response.username;
+      console.log('Username:', username);
+      navigate(`/${username}/profile`);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }*/
+
     // login logic here (e.g., API call, authentication)
   };
 

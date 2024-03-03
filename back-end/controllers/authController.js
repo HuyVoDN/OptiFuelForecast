@@ -1,5 +1,6 @@
 import {db} from "../db.js";
 import bcrypt from "bcrypt"; // for password hashing, register 
+import exp from "constants";
 import jwt from "jsonwebtoken"; // for token generation, login
 
 export const register = (req, res) => {
@@ -34,10 +35,47 @@ export const register = (req, res) => {
             }
             return res.status(200).send(`User has been registered successfully.`);
         });
-        
-        
+
     });
     
 };
 
-// add login and logout functions
+export const login = (req, res) => {
+
+    // check if user exists thru email
+    const query = "SELECT * FROM OptiFuelForecast.Users WHERE email = ?";
+    // console.log(req.body.email.password);
+    // const userPass = req.body.email.password;
+    db.query(query, [req.body.email], (error, result) => {
+        if(error)
+        {
+            console.log(error);
+            return res.status(500).json("Error in server");
+        }
+        if(!result.length)
+        {
+            console.log("User does not exist");
+            return res.status(404).json("User does not exist");
+        }
+        // check password by decoding the hashing and comparing the password that was entered and the one in the db
+        const user = result[0];
+        if(bcrypt.compareSync(req.body.password, user.password))
+        {
+            // generate token
+            const token = jwt.sign({email: user.email, username: user.username}, "secret", {expiresIn: "1h"});
+           
+            const decoded = jwt.decode(token);
+            const decodedToken = JSON.stringify(decoded);
+            const expirationTime = new Date(decoded.exp * 1000);
+
+            res.cookie("token", token, {httpOnly: true, sameSite: 'strict'});
+            
+            console.log(`User: ${user.username} has been logged in with the decoded token: [${decoded.iat}] and expires at [${expirationTime}]`);
+            return res.status(200).json({message:"User has been logged in successfully", username: user.username, token: token});
+        }
+        else
+        {   
+            return res.status(401).json("Invalid password");
+        }
+    });
+}// add login and logout functions
