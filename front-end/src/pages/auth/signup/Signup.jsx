@@ -53,7 +53,7 @@ function SignUpForm() {
             // let user know password no match :(
             console.log("password no matchy...TT");
             setError('Passwords do not match');
-            // is this what u learn at JPMorgan Sue?
+            // is this what u learn at JPMorgan, Miss Sue?
         }
 
     };

@@ -3,7 +3,7 @@ import cors from 'cors';
 import { db } from './db.js';
 import authRoutes from './routes/auth.js';
 import testRoutes from './test.js';
-
+import userRoutes from './routes/users.js';
 const app = express();
 
 app.use(cors({
@@ -35,4 +35,5 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authRoutes);
 
+app.use('/users', userRoutes); 
 app.use('/', testRoutes);// testing for sql statements and db connection

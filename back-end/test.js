@@ -7,7 +7,7 @@ import {db} from './db.js';
 const router = express.Router();
 
 router.get('/test', (req, res) => {
-  const query = "SELECT * FROM OptiFuelForecast.Users";
+  const query = "SELECT * FROM Users WHERE username = 'cyrus1'";
 
   db.query(query, (error, results) => {
     if (error) 

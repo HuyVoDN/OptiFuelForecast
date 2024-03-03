@@ -24,4 +24,6 @@ After project we can add light/dark mode, would be dope.
 
 ### Huy - 3/2/2024
 - Finished with Registering Functionality, right now I'm making a new column within the database called username, so we can dynamically route according to the username, instead of an id of the user, since its harder to do so as well as security practices.
-- Will look at ClientProfile, and change the username on there accordingly.
+- Will look at ClientProfile, and change the username on there accordingly, as well as some validation for the routes.
+- Sidebar codes are fucked since it's hardcode, so i have to figure out a way to fix them...
+- Consider adding in cookie for session logged in as well..

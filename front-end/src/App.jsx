@@ -39,12 +39,12 @@ const router = createBrowserRouter([
                 element: <Signup />
             },
             {
-                path: "/user/quote",
+                path: "/username/quote",
                 element: <Quote/>
                 // hardcoded username for quoting, must change
             },
             {
-                path: "/:username/profile",
+                path: "/:username/profile", //technically its still hardcoded
                 element: <ClientProfile />
             }
             
