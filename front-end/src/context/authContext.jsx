@@ -1,40 +1,42 @@
-// import React, { createContext, useState} from 'react';
-// import Axios from 'axios';
-// export const AuthContext = createContext();
+import React, { createContext, useState } from 'react';
+import Axios from 'axios';
 
-// export const AuthProvider = ({ children }) => {
-//     const [authState, setAuthState] = useState({
-//         token: sessionStorage.getItem('token'),
-//         username: null,
-//         isAuthenticated: sessionStorage.getItem('token') ? true : false,
-//     });
+export const AuthContext = createContext();
 
-//     const login = async (email, password) => {
-//         const res = await Axios.post('http://localhost:3000/auth/login', {
-//             email: email, 
-//             password: password,
-//           }, {withCredentials: true});
-//         //   .then((response) => {
-//         //     const username = response.data.username;
-//         //     console.log(response.data);
-//         //     console.log('Username:', username);
-//         //     //navigate(`/${username}/profile`);
-//         //   }).catch((error) => {
-//         //     console.log(error.response.data);
-//         //     setError(error.response.data);
-//         //   });
+export const AuthProvider = ({ children }) => {
+  const [authState, setAuthState] = useState({
+    token: null,
+    username: null,
+    isAuthenticated: false,
+  });
 
-//           setAuthState({
-//             token: res.data.token,
-//             username: res.data.username,
-//             isAuthenticated: true,
-//           });
+  const login = async (email, password) => {
+    try {
+      const response = await Axios.post('http://localhost:3000/auth/login', {
+        email: email, 
+        password: password,
+      });
 
-//           sessionStorage.setItem('token', res.data.token);
-//     }
-//     return (
-//         <AuthContext.Provider value={{ authState, login }}>
-//             {children}
-//         </AuthContext.Provider>
-//     );
-// }
+      setAuthState({
+        token: response.data.token,
+        username: response.data.username,
+        isAuthenticated: true,
+      });
+
+    console.log('Token(From AuthContext):', response.data.token);
+    console.log('Username(From AuthContext):', response.data.username);
+      return response;
+
+    } catch (error) {
+      console.log(error.response.data);
+      throw error;
+    }
+
+  };
+
+  return (
+    <AuthContext.Provider value={{ authState, login }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};

@@ -12,13 +12,14 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Axios from 'axios';
-//import { AuthContext } from '../../../context/authContext.jsx';
+import { AuthContext } from '../../../context/authContext.jsx';
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  //const {login} = useContext(AuthContext);
+  const {login} = useContext(AuthContext);
 
   // do a get method to retrieve the username
   const handleLogin = async (e) => {
@@ -26,19 +27,31 @@ const Login = () => {
     console.log('Email:', email);
     console.log('Password:', password);
 
-    Axios.post('http://localhost:3000/auth/login', {
-      email: email, 
-      password: password,
-    }).then((response) => {
+    try {
+      const response = await login(email, password);
       const username = response.data.username;
-      console.log(response.data);
-      console.log('Username:', username);
+      console.log('Username(From Login):', username);
+      console.log('Token(From Login):', response.data.token);
       navigate(`/${username}/profile`);
-      //navigate('/');
-    }).catch((error) => {
-      console.log(error.response.data);
-      setError(error.response.data);
-    });
+    } catch (error)
+    {
+      console.log(error);
+      setError(error);
+    }
+
+    // Axios.post('http://localhost:3000/auth/login', {
+    //   email: email, 
+    //   password: password,
+    // }).then((response) => {
+    //   const username = response.data.username;
+    //   console.log(response.data);
+    //   console.log('Username:', username);
+    //   navigate(`/${username}/profile`);
+    //   //navigate('/');
+    // }).catch((error) => {
+    //   console.log(error.response.data);
+    //   setError(error.response.data);
+    // });
 
 
     // this is for authContext method, cannot figure out as of now
@@ -59,8 +72,8 @@ const Login = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const handleMouseDownPassword = (event) => {
-    event.preventDefault();
+  const handleMouseDownPassword = (e) => {
+    e.preventDefault();
   };
 
   return (
