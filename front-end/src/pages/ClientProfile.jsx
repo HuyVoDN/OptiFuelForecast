@@ -58,7 +58,6 @@ const ClientProfile = () => {
         }).then((response) => {
             // response handling
             setIsEditing(false);
-            window.location.reload();
 
         }).catch(error => {
             // error handling

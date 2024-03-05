@@ -21,7 +21,6 @@ const Layout = () => {
     );
 };
 
-
 const ProtectedRoute = ({ children }) => {
     const navigate = useNavigate();
     const { authState } = useContext(AuthContext);
@@ -33,8 +32,8 @@ const ProtectedRoute = ({ children }) => {
 }, [authState.isAuthenticated, navigate]);
 
     return authState.isAuthenticated ? children : null;
-    //return authState.isAuthenticated ? children : navigate('/login');
 };
+
 const router = createBrowserRouter([
     {
         path: "/",
@@ -62,10 +61,6 @@ const router = createBrowserRouter([
                 element: <Quote/>
                 // hardcoded username for quoting, must change
             },
-            // {
-            //     path: "/:username/profile", //technically its still hardcoded
-            //     element: <ClientProfile />
-            // },
             {
                 path: "/:username/profile", //technically its still hardcoded
                 element: <ProtectedRoute><ClientProfile /></ProtectedRoute>
