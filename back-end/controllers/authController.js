@@ -68,7 +68,11 @@ export const login = (req, res) => {
             const decodedToken = JSON.stringify(decoded);
             const expirationTime = new Date(decoded.exp * 1000);
 
-            res.cookie("token", token, {httpOnly: true, sameSite: 'strict'});
+            res.cookie("token", token, {
+                httpOnly: true,
+                 sameSite: 'strict',
+    
+            });
             
             console.log(`User: ${user.username} has been logged in with the decoded token: [${decoded.iat}] and expires at [${expirationTime}]`);
             return res.status(200).json({message:"User has been logged in successfully", username: user.username, token: token});
@@ -78,4 +82,15 @@ export const login = (req, res) => {
             return res.status(401).json("Invalid password");
         }
     });
-}// add login and logout functions
+}
+export const logout = (req, res) => {
+    
+    res.clearCookie("token", {
+        httpOnly: true, 
+        sameSite: 'strict',
+    });
+    console.log(`User  has been logged out successfully. `);
+    return res.status(200).json({message: "User has been logged out successfully."});
+}
+
+// add login and logout functions

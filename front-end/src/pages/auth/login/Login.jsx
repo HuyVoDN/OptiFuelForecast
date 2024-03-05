@@ -39,35 +39,6 @@ const Login = () => {
       setError(error);
     }
 
-    // Axios.post('http://localhost:3000/auth/login', {
-    //   email: email, 
-    //   password: password,
-    // }).then((response) => {
-    //   const username = response.data.username;
-    //   console.log(response.data);
-    //   console.log('Username:', username);
-    //   navigate(`/${username}/profile`);
-    //   //navigate('/');
-    // }).catch((error) => {
-    //   console.log(error.response.data);
-    //   setError(error.response.data);
-    // });
-
-
-    // this is for authContext method, cannot figure out as of now
-    /*
-    try {
-      const response = await login({email, password});
-      console.log(response);
-      const username = response.username;
-      console.log('Username:', username);
-      navigate(`/${username}/profile`);
-    } catch (error) {
-      console.log(error);
-      setError(error);
-    }*/
-
-    // login logic here (e.g., API call, authentication)
   };
 
   const [showPassword, setShowPassword] = useState(false);

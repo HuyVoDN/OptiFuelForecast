@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import userProfilePic from '../../assets/profile.png';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {SidebarData} from './SidebarData.jsx';
 import './Sidebar.scss';
-
+import { AuthContext } from '../../context/authContext.jsx';
 const Sidebar = () => {
   //let { url } = useRouteMatch("/user");
   const location = useLocation();
   const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
+  const [error, setError] = useState(null);
 
-  const handleSignOut = () => {
-    // sign out logic implementation will be added later stage, hardcode for now
-    navigate('/login');
+  const handleSignOut = async (e) => {
+
+    e.preventDefault();
+    try {
+      const response = await logout();
+      const username = response.data;
+      console.log('Username(From Sidebar):', username);
+      navigate(`/login`);
+    } catch (error)
+    {
+      console.log(error);
+      setError(error);
+    }
   }
   return (
     <>

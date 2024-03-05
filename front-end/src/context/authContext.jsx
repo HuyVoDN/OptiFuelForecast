@@ -34,8 +34,27 @@ export const AuthProvider = ({ children }) => {
 
   };
 
+  const logout = async () => {
+    try 
+    {
+      const response = await Axios.post('http://localhost:3000/auth/logout');
+      setAuthState({
+        token: null,
+        username: null,
+        isAuthenticated: false,
+      });
+
+      console.log('Logout successful');
+      return response;
+
+    } catch (error) {
+      console.log(error.response.data);
+      throw error;
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ authState, login }}>
+    <AuthContext.Provider value={{ authState, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
