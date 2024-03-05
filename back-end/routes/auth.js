@@ -12,6 +12,6 @@ router.post("/register", register);
 router.post("/login", login);
 router.post("/logout", logout);
 
-// add login and logout routes 
+ 
 
 export default router;

@@ -16,8 +16,8 @@ const Sidebar = () => {
     e.preventDefault();
     try {
       const response = await logout();
-      const username = response.data;
-      console.log('Username(From Sidebar):', username);
+      const status = response.data;
+      console.log(status);
       navigate(`/login`);
     } catch (error)
     {

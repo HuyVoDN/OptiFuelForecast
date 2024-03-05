@@ -1,6 +1,5 @@
 import {db} from "../db.js";
 import bcrypt from "bcrypt"; // for password hashing, register 
-import exp from "constants";
 import jwt from "jsonwebtoken"; // for token generation, login
 
 export const register = (req, res) => {
@@ -44,8 +43,7 @@ export const login = (req, res) => {
 
     // check if user exists thru email
     const query = "SELECT * FROM OptiFuelForecast.Users WHERE email = ?";
-    // console.log(req.body.email.password);
-    // const userPass = req.body.email.password;
+
     db.query(query, [req.body.email], (error, result) => {
         if(error)
         {
@@ -57,6 +55,7 @@ export const login = (req, res) => {
             console.log("User does not exist");
             return res.status(404).json("User does not exist");
         }
+
         // check password by decoding the hashing and comparing the password that was entered and the one in the db
         const user = result[0];
         if(bcrypt.compareSync(req.body.password, user.password))
@@ -89,8 +88,6 @@ export const logout = (req, res) => {
         httpOnly: true, 
         sameSite: 'strict',
     });
-    console.log(`User  has been logged out successfully. `);
+    console.log(`User has been logged out successfully. `);
     return res.status(200).json({message: "User has been logged out successfully."});
 }
-
-// add login and logout functions
