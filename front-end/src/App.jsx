@@ -11,6 +11,7 @@ import ClientProfile from './pages/ClientProfile.jsx';
 import { AuthContext, AuthProvider } from './context/authContext.jsx';
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from './components/sidebar/Sidebar.jsx';
 
 const Layout = () => {
     return (
@@ -57,13 +58,17 @@ const router = createBrowserRouter([
                 element: <Signup />
             },
             {
-                path: "/username/quote",
+                path: "/:username/quote",
                 element: <Quote/>
                 // hardcoded username for quoting, must change
             },
             {
                 path: "/:username/profile", //technically its still hardcoded
                 element: <ProtectedRoute><ClientProfile /></ProtectedRoute>
+            },
+            {
+                path: "/:username/settings",
+                element:<div><Sidebar/><h1>Settings Page.</h1></div>
             }
             
         ]

@@ -1,15 +1,37 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import userProfilePic from '../../assets/profile.png';
-import { NavLink, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
 import {SidebarData} from './SidebarData.jsx';
 import './Sidebar.scss';
 import { AuthContext } from '../../context/authContext.jsx';
+import Axios from 'axios';
+
 const Sidebar = () => {
   //let { url } = useRouteMatch("/user");
   const location = useLocation();
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
   const [error, setError] = useState(null);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const { username } = useParams();
+  const sidebarItems = SidebarData();
+
+useEffect(() => {
+  const fetchUser = async () => {
+    try {
+      const response = await Axios.get(`http://localhost:3000/users/${username}/firstlast`);
+      const user = response.data;
+      console.log(user);
+      setFirstName(user.firstname);
+      setLastName(user.lastname);
+    } catch (error) {
+      console.log(error);
+      setError(error);
+    }
+  }
+  fetchUser();
+});
 
   const handleSignOut = async (e) => {
 
@@ -30,12 +52,12 @@ const Sidebar = () => {
       <div className="sidebar">
         <div className="client-profile">
           <img src={userProfilePic}  alt='profile' />
-          <h1>John Doe</h1>
+          <h1>{firstName} {lastName}</h1>
           </div>
         <nav className='nav-menu'>
         <ul className ="sidebar-menu-items">
           {
-            SidebarData.map((item, index) => {
+            sidebarItems.map((item, index) => {
               const isActive = location.pathname === item.path;
 
               return (
