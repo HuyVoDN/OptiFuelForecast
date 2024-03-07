@@ -12,7 +12,7 @@ export const userData = (req, res) => {
 
         if(result.length === 0)
         {
-            console.log("User does not exist");
+            console.log("From usersController - userData: User does not exist");
             return res.status(404).json("User does not exist");
         }
 
@@ -35,7 +35,7 @@ export const userFirstLast = (req, res) => {
 
         if(result.length === 0)
         {
-            console.log("User does not exist");
+            console.log("From usersController - userFirstLast: User does not exist");
             return res.status(404).json("User does not exist");
         }
 

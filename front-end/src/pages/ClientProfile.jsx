@@ -37,12 +37,12 @@ const ClientProfile = () => {
                 //console.log(user);
             })
             .catch((error) => {
-                // If the user does not exist, redirect to the 404 page
+                // If the user does not exist and logged in, redirect to the 404 page
                 if (error.response && error.response.status === 404) {
                     navigate('/404');
                 }
             });
-    }, [username, navigate]);
+    }, [username, navigate]);   
 
    
     const handleSubmit = (e) => {

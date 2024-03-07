@@ -27,3 +27,8 @@ After project we can add light/dark mode, would be dope.
 - Will look at ClientProfile, and change the username on there accordingly, as well as some validation for the routes.
 - Sidebar codes are fucked since it's hardcode, so i have to figure out a way to fix them...
 - Consider adding in cookie for session logged in as well..
+### Huy - 3/7/2024
+- [BUG] Found another bug where you can just login, and change the route to the existing username and switch to their profil and it would just work.
+- [BUG] Another bug where only one user can be signed in at the same time...
+- [BUG] Looks like the Axios.get() is being called for every page refreshes for Sidebar.jsx, check useEffect.
+- [BUG] From Fuel Quote Form, you can change the route to any user, whether it exists or not, will render the page and any user can view any user's fuel quote. Potential solution: Use Client Profile's logic and can route to 404 page.
