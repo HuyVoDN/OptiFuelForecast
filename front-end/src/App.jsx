@@ -25,7 +25,7 @@ const Layout = () => {
 const ProtectedRoute = ({ children }) => {
     const navigate = useNavigate();
     const { authState } = useContext(AuthContext);
-
+    
     useEffect(() => {
         if(!authState.isAuthenticated) {
         navigate('/login');

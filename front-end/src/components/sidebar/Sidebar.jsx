@@ -12,26 +12,10 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
   const [error, setError] = useState(null);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [firstName, setFirstName] = useState(sessionStorage.getItem('firstname') || '');
+  const [lastName, setLastName] = useState(sessionStorage.getItem('lastname') || '');
   const { username } = useParams();
   const sidebarItems = SidebarData();
-
-useEffect(() => {
-  const fetchUser = async () => {
-    try {
-      const response = await Axios.get(`http://localhost:3000/users/${username}/firstlast`);
-      const user = response.data;
-      console.log(user);
-      setFirstName(user.firstname);
-      setLastName(user.lastname);
-    } catch (error) {
-      console.log(error);
-      setError(error);
-    }
-  }
-  fetchUser();
-}, []);
 
   const handleSignOut = async (e) => {
 

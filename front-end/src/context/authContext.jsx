@@ -23,6 +23,9 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated: true,
       });
 
+      
+    sessionStorage.setItem('firstname', response.data.firstname);
+    sessionStorage.setItem('lastname', response.data.lastname);
     console.log('Token(From AuthContext):', response.data.token); // please delete once merged to main
     console.log('Username(From AuthContext):', response.data.username); // please delete once merged to main
       return response;
@@ -38,12 +41,15 @@ export const AuthProvider = ({ children }) => {
     try 
     {
       const response = await Axios.post('http://localhost:3000/auth/logout');
+      
       setAuthState({
         token: null,
         username: null,
         isAuthenticated: false,
       });
 
+      sessionStorage.removeItem('firstname');
+      sessionStorage.removeItem('lastname');
       console.log('Logout successful');
       return response;
 
@@ -51,6 +57,7 @@ export const AuthProvider = ({ children }) => {
       console.log(error.response.data);
       throw error;
     }
+    
   };
 
   return (

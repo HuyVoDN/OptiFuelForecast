@@ -74,7 +74,7 @@ export const login = (req, res) => {
             });
             
             console.log(`User: ${user.username} has been logged in with the decoded token: [${decoded.iat}] and expires at [${expirationTime}]`);
-            return res.status(200).json({message:"User has been logged in successfully", username: user.username, token: token});
+            return res.status(200).json({message:"User has been logged in successfully", username: user.username, token: token, firstname: user.firstname, lastname: user.lastname});
         }
         else
         {   
