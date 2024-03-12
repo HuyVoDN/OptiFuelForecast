@@ -52,7 +52,7 @@ export const login = (req, res) => {
         }
         if(!result.length)
         {
-            console.log("User does not exist");
+            console.log("From authController - login: User does not exist");
             return res.status(404).json("User does not exist");
         }
 
