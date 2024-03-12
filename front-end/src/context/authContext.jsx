@@ -23,8 +23,8 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated: true,
       });
 
-    console.log('Token(From AuthContext):', response.data.token);
-    console.log('Username(From AuthContext):', response.data.username);
+    console.log('Token(From AuthContext):', response.data.token); // please delete once merged to main
+    console.log('Username(From AuthContext):', response.data.username); // please delete once merged to main
       return response;
 
     } catch (error) {

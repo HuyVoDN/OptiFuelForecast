@@ -31,7 +31,7 @@ useEffect(() => {
     }
   }
   fetchUser();
-});
+}, []);
 
   const handleSignOut = async (e) => {
 

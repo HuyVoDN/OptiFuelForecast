@@ -27,3 +27,6 @@ After project we can add light/dark mode, would be dope.
 - Will look at ClientProfile, and change the username on there accordingly, as well as some validation for the routes.
 - Sidebar codes are fucked since it's hardcode, so i have to figure out a way to fix them...
 - Consider adding in cookie for session logged in as well..
+
+### Huy - 3/6/2024
+- Consider using useMemo as it caches the values so I can fix the problem with the sidebar data.
