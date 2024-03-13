@@ -32,3 +32,7 @@ After project we can add light/dark mode, would be dope.
 - [BUG] Another bug where only one user can be signed in at the same time...
 - [BUG] Looks like the Axios.get() is being called for every page refreshes for Sidebar.jsx, check useEffect.
 - [BUG] From Fuel Quote Form, you can change the route to any user, whether it exists or not, will render the page and any user can view any user's fuel quote. Potential solution: Use Client Profile's logic and can route to 404 page.
+
+### Huy - 3/13/2024
+- Fixed Bug #3 on 3/7/2024
+- Add unit tests to every functionality of backend, just create a new folder called test or something like that lol :5head:

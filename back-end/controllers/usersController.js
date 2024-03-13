@@ -23,27 +23,30 @@ export const userData = (req, res) => {
     // make sql statement to pull the username so it can be called from the front end
     
 };
-export const userFirstLast = (req, res) => {
-    const { username } = req.params;
-    const query = "SELECT firstname, lastname FROM OptiFuelForecast.Users WHERE username = ?";
-    db.query( query, [username], (error, result) => {
-        if(error)
-        {
-            console.log(error);
-            return res.status(500).json("Error in server");
-        }
 
-        if(result.length === 0)
-        {
-            console.log("From usersController - userFirstLast: User does not exist");
-            return res.status(404).json("User does not exist");
-        }
+// this functionality is no longer needed, it was used to get the first and last name from the database
+// but it is now being used from the login instead.s==
+// export const userFirstLast = (req, res) => {
+//     const { username } = req.params;
+//     const query = "SELECT firstname, lastname FROM OptiFuelForecast.Users WHERE username = ?";
+//     db.query( query, [username], (error, result) => {
+//         if(error)
+//         {
+//             console.log(error);
+//             return res.status(500).json("Error in server");
+//         }
 
-        // if user exists, return the user data
-        return res.status(200).json(result[0]);
-    });
+//         if(result.length === 0)
+//         {
+//             console.log("From usersController - userFirstLast: User does not exist");
+//             return res.status(404).json("User does not exist");
+//         }
+
+//         // if user exists, return the user data
+//         return res.status(200).json(result[0]);
+//     });
     
-};
+//};
 export const userUpdater = (req, res) => {
 
     const { username } = req.params;
