@@ -2,8 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import { db } from './db.js';
 import authRoutes from './routes/auth.js';
-import testRoutes from './test.js';
+import testRoutes from './functionalitytest.js';
 import userRoutes from './routes/users.js';
+
 const app = express();
 
 app.use(cors({
@@ -37,3 +38,5 @@ app.use('/auth', authRoutes);
 
 app.use('/users', userRoutes); 
 app.use('/', testRoutes);// testing for sql statements and db connection
+
+export default app;
