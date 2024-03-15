@@ -1,14 +1,14 @@
 import { db } from "../db.js";
 import request from 'supertest';
 
-describe('Database Connection', () => {
+describe('Database Connection',  () => {
 
-    afterAll(() => {
+     afterAll(() => {
          db.end();
     });
 
-    it('should connect to the database', (done) => {
-        db.connect((error) => {
+     it('should connect to the database', (done) => {
+         db.connect((error) => {
             if (error) {
                 console.error("Error connecting to the database: " + error);
                 done(error);

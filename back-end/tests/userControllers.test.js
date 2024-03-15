@@ -1,19 +1,22 @@
 import { db } from "../db.js";
 import { userData, userUpdater } from '../controllers/usersController.js';
+import { afterEach } from "node:test";
 
 jest.mock('../db.js');
 describe('userController', () => {
     
-    beforeAll(() => {
+    beforeEach(() => {
         jest.useFakeTimers();
     });
     afterAll(() =>{
         db.end();
     });
-
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
     // test for userData function
     describe('userData', () => {
-        it('should return user data if user exists', async  () => {
+        it('should return user data if user exists', () => {
 
             const req = { params: { username: 'kevinzheng123' } };
             const res = {
@@ -25,17 +28,15 @@ describe('userController', () => {
 
             db.query.mockImplementation((query, params, callback) => {
                 callback(null, [mockUser]);
-
-
             });
 
-            await userData(req, res);
+            userData(req, res);
             expect(res.status).toHaveBeenCalledWith(200);
             expect(res.json).toHaveBeenCalledWith(mockUser);
             
         });
 
-        it('should return 404 if user does not exist', async () => {
+        it('should return 404 if user does not exist',  () => {
 
             const req = { params: { username: 'noneexist' } };
             const res = {
@@ -47,7 +48,7 @@ describe('userController', () => {
                 callback(null, []);
             });
 
-            await userData(req, res);
+         userData(req, res);
 
             expect(res.status).toHaveBeenCalledWith(404);
             expect(res.json).toHaveBeenCalledWith("User does not exist");
