@@ -2,20 +2,22 @@ import { db } from "../db.js";
 import bcrypt from "bcrypt"; // for password hashing, register 
 import jwt from "jsonwebtoken"; // for token generation, login
 
-const getUserByEmail = (email) => {
-    const query = "SELECT * FROM OptiFuelForecast.Users WHERE email = ?";
-    return new Promise((resolve, reject) => {
-        db.query(query, [email], (error, result) => {
-            if (error) {
-                reject(error);
-            }
-            else {
-                resolve(result[0]);
-            }
-        });
-    });
-};
+
 export const register = async (req, res) => {
+
+    const getUserByEmail = (email) => {
+        const query = "SELECT * FROM OptiFuelForecast.Users WHERE email = ?";
+        return new Promise((resolve, reject) => {
+            db.query(query, [email], (error, result) => {
+                if (error) {
+                    reject(error);
+                }
+                else {
+                    resolve(result[0]);
+                }
+            });
+        });
+    };
 
     try {
         const user = await getUserByEmail(req.body.email);
@@ -46,7 +48,20 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
 
-
+    const getUserByEmail = (email) => {
+        const query = "SELECT * FROM OptiFuelForecast.Users WHERE email = ?";
+        return new Promise((resolve, reject) => {
+            db.query(query, [email], (error, result) => {
+                if (error) {
+                    reject(error);
+                }
+                else {
+                    resolve(result[0]);
+                }
+            });
+        });
+    };
+    
     try {
         const user = await getUserByEmail(req.body.email);
         if (!user) {

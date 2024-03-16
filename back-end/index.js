@@ -15,7 +15,7 @@ app.use(cors({
 
 app.use(express.json());
 
-app.listen(3000, () =>
+const server = app.listen(3000, () =>
   console.log('Server is running on port 3000'),
 );
 
@@ -37,4 +37,4 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes); 
 app.use('/', testRoutes);// testing for sql statements and db connection
 
-export default app;
+export {app, server};
