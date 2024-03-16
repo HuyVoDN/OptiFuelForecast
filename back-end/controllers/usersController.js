@@ -1,31 +1,40 @@
 import {db} from "../db.js";
 
-export const userData = (req, res) => {
-    const { username } = req.params;
+const getUserByUsername = (username) => {
     const query = "SELECT * FROM OptiFuelForecast.Users WHERE username = ?";
-    db.query( query, [username], (error, result) => {
-        if(error)
+    return new Promise((resolve, reject) => {
+        db.query(query, [username], (error, result) => {
+            if(error)
+            {
+                reject(error);
+            }
+            else
+            {
+                resolve(result[0]);
+            }
+         });
+    });
+};
+export const userData = async (req, res) => {
+    try {
+        const user = await getUserByUsername(req.params.username);
+        if(!user)
         {
-            console.log(error);
-            return res.status(500).json("Error in server");
-        }
-
-        if(result.length === 0)
-        {
-            console.log("From usersController - userData: User does not exist");
             return res.status(404).json("User does not exist");
         }
-
-        // if user exists, return the user data
-        return res.status(200).json(result[0]);
-    });
-    
-    // make sql statement to pull the username so it can be called from the front end
+        return res.status(200).json(user);
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).send("Error in server");
+    }
+  
     
 };
 
 // this functionality is no longer needed, it was used to get the first and last name from the database
-// but it is now being used from the login instead.s==
+// but it is now being used from the login instead. Keep it here just in case
+
 // export const userFirstLast = (req, res) => {
 //     const { username } = req.params;
 //     const query = "SELECT firstname, lastname FROM OptiFuelForecast.Users WHERE username = ?";
@@ -47,23 +56,29 @@ export const userData = (req, res) => {
 //     });
     
 //};
-export const userUpdater = (req, res) => {
+export const userUpdater = async (req, res) => {
 
-    const { username } = req.params;
-    const { firstName, lastName, address1, address2, city, state, zipcode } = req.body;
-    const query = "UPDATE OptiFuelForecast.Users SET firstname = ?, lastname = ?, address1 = ?, address2 = ?, city = ?, state = ?, zipcode = ? WHERE username = ?";
-    db.query(query, [firstName, lastName, address1, address2, city, state, zipcode, username], (error, result) => {
-        if(error)
+    try 
+    {
+        const user = await getUserByUsername(req.params.username);
+        if(!user)
         {
-            console.log(error);
-            return res.status(500).json("Error in server");
+            return res.status(404).json("User does not exist"); 
         }
-        // if user does not exist, return 404
-        if(result.affectedRows === 0)
-        {
-            return res.status(404).json("User does not exist");
-        }
-        // user updated ez
-        return res.status(200).json("User has been updated successfully");
-    });
+
+        const { firstName, lastName, address1, address2, city, state, zipcode } = req.body;
+        const query = "UPDATE OptiFuelForecast.Users SET firstname = ?, lastname = ?, address1 = ?, address2 = ?, city = ?, state = ?, zipcode = ? WHERE username = ?";
+        db.query(query, [firstName, lastName, address1, address2, city, state, zipcode, req.params.username], (error, result) => {
+            if(error)
+            {
+                throw error;
+            }
+            return res.status(200).json("User has been updated successfully.");
+        });
+    }
+    catch (error)
+    {
+        console.error(error);
+        return res.status(500).send("Error in server");
+    }
 };
