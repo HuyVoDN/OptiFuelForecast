@@ -10,7 +10,7 @@ const app = express();
 app.use(cors({
   credentials: true,
   origin: ["http://localhost:5173"],
-  methods: ["GET" , "POST", "PATCH"],
+  methods: ["GET", "POST", "PATCH"],
 }));
 
 app.use(express.json());
