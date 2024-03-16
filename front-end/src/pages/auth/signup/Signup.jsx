@@ -52,7 +52,7 @@ function SignUpForm() {
         {
             // let user know password no match :(
             console.log("password no matchy...TT");
-            setError('Passwords do not match');
+            setError('Passwords no matchy :<');
             // is this what u learn at JPMorgan, Miss Sue?
         }
 

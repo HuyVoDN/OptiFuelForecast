@@ -35,8 +35,8 @@ const Login = () => {
       navigate(`/${username}/profile`);
     } catch (error)
     {
-      console.log(error);
-      setError(error);
+      console.log(error.response.data);
+      setError(error.response.data);
     }
 
   };
@@ -83,6 +83,7 @@ const Login = () => {
             label="Password"
           />
         </FormControl>
+        {error && <div className="error">{error}</div>}
         <div className="forgotPassword">
           <Link className="link" to='/contactus'>Forgot password?</Link>
         </div>
