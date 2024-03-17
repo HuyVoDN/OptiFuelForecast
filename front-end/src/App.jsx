@@ -4,7 +4,7 @@ import About from "./pages/About.jsx";
 import Home from "./pages/Home.jsx";
 import Signup from "./pages/auth/signup/Signup.jsx";
 import Login from "./pages/auth/login/Login.jsx";
-import Quote from "./pages/FuelQuoteForm.jsx";
+import FuelQuote from './pages/fuelquote/FuelQuote.jsx';
 import Navbar from "./components/navbar/Navbar.jsx";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ClientProfile from './pages/ClientProfile.jsx';
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/:username/quote",
-                element: <Quote/>
+                element: <FuelQuote/>
                 // hardcoded username for quoting, must change
             },
             {

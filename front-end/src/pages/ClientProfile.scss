@@ -6,13 +6,6 @@
 
     .main-content{
         display: flex;
-
-        h1 {
-            font-size: 3rem;
-            color: rgb(0, 0, 112);
-            margin-bottom:20px;
-            
-        }
         
         .container {
             max-width: 800px; /* Increase the max-width */
@@ -21,6 +14,13 @@
             border: 1px solid #ccc;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            h1 {
+                font-size: 3rem;
+                color: rgb(0, 0, 112);
+                margin-bottom:20px;
+                
+            }
 
             .form-row{
                 display:flex;

@@ -34,7 +34,7 @@ const Sidebar = () => {
   return (
     <>
       <div className="sidebar">
-        <div className="client-profile">
+        <div className="sidebar-client-profile">
           <img src={userProfilePic}  alt='profile' />
           <h1>{firstName} <br/> {lastName}</h1>
           </div>
