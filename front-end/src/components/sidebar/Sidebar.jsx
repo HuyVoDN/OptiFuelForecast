@@ -36,7 +36,7 @@ const Sidebar = () => {
       <div className="sidebar">
         <div className="client-profile">
           <img src={userProfilePic}  alt='profile' />
-          <h1>{firstName} {lastName}</h1>
+          <h1>{firstName} <br/> {lastName}</h1>
           </div>
         <nav className='nav-menu'>
         <ul className ="sidebar-menu-items">
