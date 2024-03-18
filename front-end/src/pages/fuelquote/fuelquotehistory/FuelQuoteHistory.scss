@@ -1,8 +1,9 @@
 .main-content {
     display: flex;
-
+    font-family: 'Roboto', sans-serif;
+    
     .container {
-        max-width: 800px; 
+        width: 800px; 
         padding: 30px; 
         border: 1px solid #ccc;
         border-radius: 5px;
