@@ -37,5 +37,5 @@ app.get('/', (req, res) => {
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes); 
 app.use('/', testRoutes);// testing for sql statements and db connection
-app.use('quote', quoteRoutes); //quote routes
+app.use('/quote', quoteRoutes); //quote routes
 export {app, server};

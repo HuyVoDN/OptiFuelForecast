@@ -1,6 +1,7 @@
 import express from "express";
-import {fuelQuoteData} from "../controllers/quoteController.js";
+import {getFuelQuotes, createFuelQuote} from "../controllers/quoteController.js";
 
 const router = express.Router();
-router.get(`/quote`, fuelQuoteData);
+router.get(`/:username`, getFuelQuotes);
+router.post(`/:username`, createFuelQuote);
 export default router; 
