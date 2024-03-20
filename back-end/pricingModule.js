@@ -1,10 +1,10 @@
 class PricingModule {
     constructor(gallonsRequested, locationFactor, rateHistoryFactor, gallonsFactor, isOutOfState, isRepeatCustomer) {
-        this.gallonsRequested = gallonsRequested;
-        this.locationFactor = locationFactor;
-        this.rateHistoryFactor = rateHistoryFactor;
-        this.gallonsFactor = gallonsFactor;
-        this.isOutOfState = isOutOfState;
+        this.gallonsRequested = gallonsRequested; 
+        this.locationFactor = locationFactor; // not accounting for yet
+        this.rateHistoryFactor = rateHistoryFactor; // not accounting for yet
+        this.gallonsFactor = gallonsFactor; // not accounting for yet
+        this.isOutOfState = isOutOfState; 
         this.isRepeatCustomer = isRepeatCustomer;
         this.basePricePerGallon = 1.50; // This is a base price you can adjust
     }
