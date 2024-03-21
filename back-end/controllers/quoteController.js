@@ -14,7 +14,7 @@ export const getFuelQuotes = async (req, res) => {
             console.error(error);
             return res.status(500).send("Error in server");
         }
-        return res.status(200).json(result);
+        return res.status(200).json({result});
     });
 };
 export const createFuelQuote = async (req, res) => {
@@ -22,7 +22,6 @@ export const createFuelQuote = async (req, res) => {
     if (!address || !city || !state || !zipcode || !date || !gallonsRequested) {
         return res.status(400).json("Missing required fields");
     }
-
     try {
         const isOutOfState = state.toLowerCase() !== 'tx';
         const isRepeatedCustomerQuery = `
@@ -48,8 +47,8 @@ export const createFuelQuote = async (req, res) => {
                 }
 
                 const userId = result[0].id_user;
-                const newFuelQuote = [userId, address, city, state, zipcode, date, gallonsRequested, price.totalAmountDue];
-                const query = "INSERT INTO OptiFuelForecast.Quotes (`id_user`, `address`, `city`, `state`, `zipcode`, `date`, `gallonsRequested`, `totalAmountDue`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                const newFuelQuote = [userId, address, city, state, zipcode, date, gallonsRequested, price.suggestedPricePerGallon , price.totalAmountDue];
+                const query = "INSERT INTO OptiFuelForecast.Quotes (`id_user`, `address`, `city`, `state`, `zipcode`, `date`, `gallonsRequested`, `suggestedPrice`, `totalAmountDue`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 db.query(query, newFuelQuote, (error, result) => 
                 {
                     if (error) 
