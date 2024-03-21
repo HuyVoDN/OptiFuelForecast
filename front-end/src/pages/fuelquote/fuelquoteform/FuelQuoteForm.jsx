@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import {useParams} from "react-router-dom";
+import Axios from "axios";
 import { TextField, Button, Typography } from '@mui/material';
 import "./FuelQuoteForm.scss";
 
@@ -7,11 +9,26 @@ const FuelQuoteForm = () => {
     const [DeliveryDate, setDeliveryDate] = useState('');
     const [FuelAmount, setFuelAmount] = useState('');
     const [SuggestedPrice, setSuggestedPrice] = useState('');  
+    const [TotalAmountDue, setTotalAmountDue] = useState('');
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zipcode, setZipcode] = useState('');
+    const { username } = useParams();
 
-    // const[ id, lastName, firstName, age ] = useState('');
+    // useEffect(() => {
+    //     Axios.get(`http://localhost:3000/quote/${username}`).then((response) => {
+    //         const quote = response.data;
+    //         setDeliveryAddress(quote.address);
+    //         setCity(quote.city);
+    //         setState(quote.state);
+    //         setZipcode(quote.zipcode);
+    //         setDeliveryDate(quote.date);
+    //         setFuelAmount(quote.gallonsRequested);
+    //         setTotalAmountDue(quote.totalAmountDue);
+    //     }).catch((error) => {
+            
+    //     });
+    // }, []);
 
     return (
         <>
