@@ -15,6 +15,7 @@ export const getFuelQuotes = async (req, res) => {
             return res.status(500).send("Error in server");
         }
         return res.status(200).json({result});
+        
     });
 };
 export const createFuelQuote = async (req, res) => {

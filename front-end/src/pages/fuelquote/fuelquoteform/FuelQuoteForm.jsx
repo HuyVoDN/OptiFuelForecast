@@ -73,6 +73,10 @@ const FuelQuoteForm = () => {
         };
         Axios.post(`http://localhost:3000/quote/${username}`, postData).then((response) => {
             // response handling
+            return Axios.get(`http://localhost:3000/quote/${username}`);
+        }).then((response) => {
+            setSuggestedPrice(response.data.result[0].suggestedPrice);
+            setTotalAmountDue(response.data.result[0].totalAmountDue);
         }).catch(error => {
             console.error(error);
             setError(error);
@@ -158,7 +162,7 @@ const FuelQuoteForm = () => {
 
                             <div className="suggestedPrice-container">
                                 <p className="TotalOutput"> Suggested Price </p>
-                                <p className="output-text-suggestion">$0</p>
+                                <p className="output-text-suggestion">${SuggestedPrice}</p>
                             </div>
                             {/* hardcoded values for now, for both suggested price and output */}
                             <div className="output-container">
