@@ -12,24 +12,16 @@ const columns = [
     {field: 'TotalAmountDue', headerName: 'Total Amount Due', description: 'This column makes u broke brokie.', width: 180},
     {field: 'suggestedPricePerGallon', headerName: 'Suggested Price Per Gallon', width: 200},
 ];
-
-// const rows = [
-//     { id: 1, DeliveryAddress: '1600 Pennsylvania Avenue', DeliveryDate: '11/22/2222',FuelAmount: 3500, TotalAmountDue: '1,000,000' },
-//     { id: 2, DeliveryAddress: '1600 Pennsylvania Avenue', DeliveryDate: '11/22/2222',FuelAmount: 3500, TotalAmountDue: '1,000,000' },
-//     { id: 3, DeliveryAddress: '1600 Pennsylvania Avenue', DeliveryDate: '11/22/2222',FuelAmount: 3500, TotalAmountDue: '1,000,000' },
-//     { id: 4, DeliveryAddress: '1600 Pennsylvania Avenue', DeliveryDate: '11/22/2222',FuelAmount: 3500, TotalAmountDue: '1,000,000' },
-//     { id: 5, DeliveryAddress: '1600 Pennsylvania Avenue', DeliveryDate: '11/22/2222',FuelAmount: 3500, TotalAmountDue: '1,000,000' },
-//     { id: 6, DeliveryAddress: '1600 Pennsylvania Avenue', DeliveryDate: '11/22/2222',FuelAmount: 3500, TotalAmountDue: '1,000,000' },
-// ];
-
 const FuelQuoteHistory = () => {
 
     const { username } = useParams();
     const [rows, setRows] = useState([]);
+    
     function formatDate(dateString) {
         const date = new Date(dateString);
         return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     }
+
     useEffect(() => {
         Axios.get(`http://localhost:3000/quote/${username}`).then((response) => {
             const data = response.data.result;

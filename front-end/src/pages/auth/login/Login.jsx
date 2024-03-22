@@ -24,18 +24,12 @@ const Login = () => {
   // do a get method to retrieve the username
   const handleLogin = async (e) => {
     e.preventDefault();
-    console.log('Email:', email);
-    console.log('Password:', password);
-
     try {
       const response = await login(email, password);
       const username = response.data.username;
-      console.log('Username(From Login):', username);
-      console.log('Token(From Login):', response.data.token);
       navigate(`/${username}/profile`);
     } catch (error)
     {
-      console.log(error.response.data);
       setError(error.response.data);
     }
 

@@ -25,41 +25,6 @@ const FuelQuoteForm = () => {
     const [error, setError] = useState('');
     const { username } = useParams();
 
-
-    // useEffect(() => {
-    //     Axios.get(`http://localhost:3000/quote/${username}`).then((response) => {
-    //         const quote = response.data.result[0];
-    //         setDeliveryAddress(quote.address);
-    //         setCity(quote.city);
-    //         setState(quote.state);
-    //         setZipcode(quote.zipcode);
-    //         setDeliveryDate(formatDate(quote.date));
-    //         setFuelAmount(quote.gallonsRequested);
-    //         setTotalAmountDue(quote.totalAmountDue);
-    //     }).catch((error) => {
-    //         console.log(error);
-    //         setError(error);
-    //     });
-    // }, [username]);
-
-    // changes to the fuel quote form before submitting?
-    const handleChanges = (e) => {
-        e.preventDefault();
-        Axios.patch(`http://localhost:3000/quote/${username}`, {
-            DeliveryAddress,
-            city,
-            state,
-            zipcode,
-            DeliveryDate,
-            FuelAmount
-        }).then((response) => {
-            // response handling
-        }).catch(error => {
-            console.error(error);
-            setError(error);
-        });
-    };
-
     // submit fuel quote form to the backend
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -75,12 +40,15 @@ const FuelQuoteForm = () => {
             // response handling
             return Axios.get(`http://localhost:3000/quote/${username}`);
         }).then((response) => {
-            setSuggestedPrice(response.data.result[0].suggestedPrice);
-            setTotalAmountDue(response.data.result[0].totalAmountDue);
+
+            let lastIndex = response.data.result.length - 1;
+            setSuggestedPrice(response.data.result[lastIndex].suggestedPrice);
+            setTotalAmountDue(response.data.result[lastIndex].totalAmountDue);
         }).catch(error => {
             console.error(error);
             setError(error);
         });
+       
     };
     return (
         <>
@@ -148,18 +116,6 @@ const FuelQuoteForm = () => {
                                     required
                                 />
                             </div>
-                            {/* <div className="form-row">
-                            <TextField
-                                    label="Price Suggestion"
-                                    value={SuggestedPrice}
-                                    style={{ width: '100%'}}
-                                    placeholder='$910,000'
-                                    variant='filled'
-                                    onChange={e => setSuggestedPrice(e.target.value)}
-                                
-                                />
-                        </div> */}
-
                             <div className="suggestedPrice-container">
                                 <p className="TotalOutput"> Suggested Price </p>
                                 <p className="output-text-suggestion">${SuggestedPrice}</p>
@@ -170,9 +126,6 @@ const FuelQuoteForm = () => {
                                 <p className="output-text">${TotalAmountDue}</p>
                             </div>
                             <div className="form-group button-container">
-                                <Button onClick={handleChanges} className="save-btn" variant="contained" color="primary" style={{ borderRadius: 50 }}>
-                                    Save
-                                </Button>
                                 <Button onClick={handleSubmit} className="submit-btn" variant="contained" color="primary" style={{ borderRadius: 50 }}>
                                     Submit
                                 </Button>

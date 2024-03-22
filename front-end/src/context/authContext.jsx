@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (email, password) => {
     try {
       const response = await Axios.post('http://localhost:3000/auth/login', {
-        email: email, 
+        email: email,
         password: password,
       });
 
@@ -23,11 +23,9 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated: true,
       });
 
-      
-    sessionStorage.setItem('firstname', response.data.firstname);
-    sessionStorage.setItem('lastname', response.data.lastname);
-    console.log('Token(From AuthContext):', response.data.token); // please delete once merged to main
-    console.log('Username(From AuthContext):', response.data.username); // please delete once merged to main
+
+      sessionStorage.setItem('firstname', response.data.firstname);
+      sessionStorage.setItem('lastname', response.data.lastname);
       return response;
 
     } catch (error) {
@@ -37,10 +35,9 @@ export const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
-    try 
-    {
+    try {
       const response = await Axios.post('http://localhost:3000/auth/logout');
-      
+
       setAuthState({
         token: null,
         username: null,
@@ -49,14 +46,13 @@ export const AuthProvider = ({ children }) => {
 
       sessionStorage.removeItem('firstname');
       sessionStorage.removeItem('lastname');
-      console.log('Logout successful');
       return response;
 
     } catch (error) {
       console.log(error.response.data);
       throw error;
     }
-    
+
   };
 
   return (

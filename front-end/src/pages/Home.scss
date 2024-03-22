@@ -1,23 +1,86 @@
-
-.home{
+.home {
     background-image: url('https://cdn.hswstatic.com/gif/gettyimages-ec2879-002.jpg');
     background-size: cover;
     //width: 100vw;
     height: 100vh;
     background-repeat: no-repeat;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: flex-start;
     margin: 0;
-   
-    .desc
-    {
-        animation: slideIn 1.5s cubic-bezier(0.2, 0.5, 0.2, 0.5) 0.5s forwards;
-        margin:0 200px;
+
+    .desc {
+        position: relative;
+        overflow: hidden;
+        margin: 0 200px;
         color: white;
-        h1
-        {
-            
+
+        h1,
+        p {
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        ::before,
+        ::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: white;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        ::before {
+            top: 0;
+            transform: scaleX(0);
+        }
+
+        ::after {
+            right: 0;
+            bottom: 0;
+            transform: scaleX(0);
+        }
+
+        .link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            font-size: 40px;
+            font-weight: bold;
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            transition: opacity 0.5s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                color: rgb(255, 255, 255);
+                text-decoration: none;
+            }
+        }
+
+        &:hover {
+
+            h1,
+            p {
+                opacity: 0;
+            }
+
+            ::before,
+            ::after {
+                transform: scaleX(1);
+            }
+
+            .link {
+                opacity: 1;
+            }
+        }
+
+        h1 {
             font-weight: bolder;
             font-size: 3rem;
             text-align: left;
@@ -25,36 +88,26 @@
             justify-content: center;
         }
 
-        p
-        {
+        p {
             margin-bottom: 2px;
         }
-
-        .link
-        {
-            font-size:18px;
-            font-weight:bold;
-            color: rgb(255, 255, 255);
-            text-decoration: none;    
-            transition: 0.2s color ease-in-out; 
-            &:hover{
-                color: rgb(0, 0, 0);
-                text-decoration: none;}
-        }
     }
-    
+
 }
-@keyframes slideIn{
+
+@keyframes slideIn {
     0% {
         transform: translateX(-100%);
         opacity: 0;
-      }
-      50% {
+    }
+
+    50% {
         transform: translateX(-10%);
         opacity: 0.5;
-      }
-      100% {
+    }
+
+    100% {
         transform: translateX(0);
         opacity: 1;
-      }
+    }
 }
