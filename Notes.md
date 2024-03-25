@@ -36,3 +36,6 @@ After project we can add light/dark mode, would be dope.
 ### Huy - 3/13/2024
 - Fixed Bug #3 on 3/7/2024
 - Add unit tests to every functionality of backend, just create a new folder called test or something like that lol :5head:
+
+### Huy - 3/25/2024
+- Remember to change alot of the api routes within front-end once I set up backend hosting.
