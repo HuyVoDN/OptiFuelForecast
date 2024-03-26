@@ -1,6 +1,6 @@
 // import { db } from '../db.js';
 // import PricingModule from '../pricingModule.js';
-const db = require("../db.js");
+const { db, closeConnection } = require("../db.js");
 const PricingModule = require("../pricingModule.js");
 // lets do bare min for now, so we'll only calculate the price based off in state vs out of state
 // if out of state we'll increase 10%, in state we reduce by 5%

@@ -1,4 +1,4 @@
-const db = require("../db.js");
+const {db, closeConnection} = require("../db.js");
 
 const userData = async (req, res) => {
     const getUserByUsername = (username) => {

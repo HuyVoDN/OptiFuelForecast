@@ -1,8 +1,8 @@
 // import { db } from "../db.js";
 // import bcrypt from "bcrypt"; // for password hashing, register 
 // import jwt from "jsonwebtoken"; // for token generation, login
-const db = require("../db.js");
-const bcrypt = require("bcrypt");
+const { db, closeConnection } = require("../db.js");
+const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
  const register = async (req, res) => {
