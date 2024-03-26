@@ -1,6 +1,6 @@
-import { db } from "../db.js";
+const db = require("../db.js");
 
-export const userData = async (req, res) => {
+const userData = async (req, res) => {
     const getUserByUsername = (username) => {
         const query = "SELECT * FROM OptiFuelForecast.Users WHERE username = ?";
         return new Promise((resolve, reject) => {
@@ -28,7 +28,7 @@ export const userData = async (req, res) => {
     }
 };
 
-export const userUpdater = async (req, res) => {
+const userUpdater = async (req, res) => {
     const getUserByUsername = (username) => {
         const query = "SELECT * FROM OptiFuelForecast.Users WHERE username = ?";
         return new Promise((resolve, reject) => {
@@ -87,3 +87,5 @@ export const userUpdater = async (req, res) => {
 //     });
 
 //};
+
+module.exports = { userData, userUpdater };

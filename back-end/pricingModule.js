@@ -33,4 +33,4 @@ class PricingModule {
     }
 }
 
-export default PricingModule;
+module.exports = PricingModule;
