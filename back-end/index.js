@@ -12,6 +12,7 @@ const authRoutes = require('./routes/auth.js');
 const testRoutes = require('./functionalitytest.js');
 const userRoutes = require('./routes/users.js');
 const quoteRoutes = require('./routes/quote.js');
+const functionTest = require('./functionalitytest.js');
 const app = express();
 
 app.use(cors({
@@ -39,7 +40,7 @@ db.connect((error) => {
 app.get('/', (req, res) => {
   res.send('Nice, the backend is working.');
 }); //test
-
+app.get('/', functionTest); //test
 //app.use('/fuel')
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes); 
