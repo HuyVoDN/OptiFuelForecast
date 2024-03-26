@@ -37,8 +37,8 @@ function SignUpForm() {
             // login logic here (e.g., API call, authentication)
             Axios.post('https://optifuel-forecast-server.vercel.app/auth/register', {
                 email: email,
-                password: password,
                 username: username,
+                password: password,
             }).then((response) => {
                 console.log(response);
                 navigate(`/${username}/profile`);
