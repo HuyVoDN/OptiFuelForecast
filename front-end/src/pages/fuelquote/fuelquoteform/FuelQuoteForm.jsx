@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
-import { TextField, Button, Typography } from '@mui/material';
+import { TextField, Button, FormControl, MenuItem, Select, InputLabel } from '@mui/material';
 import "./FuelQuoteForm.scss";
 
 const FuelQuoteForm = () => {
@@ -78,14 +78,38 @@ const FuelQuoteForm = () => {
                                     onChange={e => setCity(e.target.value)}
                                     required
                                 />
-                                <TextField
-                                    label="State"
+                               <FormControl required variant="filled" sx={{ minWidth: 200 }} >
+                                <InputLabel id="state-label">State</InputLabel>
+                                <Select
+                                    labelId="state-label"
                                     value={state}
-                                    placeholder='TX'
-                                    variant='filled'
                                     onChange={e => setState(e.target.value)}
-                                    required
-                                />
+                                >
+                                    <MenuItem value={'TX'}>TX</MenuItem>
+                                    <MenuItem value={'NY'}>NY</MenuItem>
+                                    <MenuItem value={'CA'}>CA</MenuItem>
+                                    <MenuItem value={'FL'}>FL</MenuItem>
+                                    <MenuItem value={'PA'}>PA</MenuItem>
+                                    <MenuItem value={'IL'}>IL</MenuItem>
+                                    <MenuItem value={'OH'}>OH</MenuItem>
+                                    <MenuItem value={'GA'}>GA</MenuItem>
+                                    <MenuItem value={'NC'}>NC</MenuItem>
+                                    <MenuItem value={'MI'}>MI</MenuItem>
+                                    <MenuItem value={'NJ'}>NJ</MenuItem>
+                                    <MenuItem value={'VA'}>VA</MenuItem>
+                                    <MenuItem value={'WA'}>WA</MenuItem>
+                                    <MenuItem value={'AZ'}>AZ</MenuItem>
+                                    <MenuItem value={'MA'}>MA</MenuItem>
+                                    <MenuItem value={'TN'}>TN</MenuItem>
+                                    <MenuItem value={'IN'}>IN</MenuItem>
+                                    <MenuItem value={'MO'}>MO</MenuItem>
+                                    <MenuItem value={'MD'}>MD</MenuItem>
+                                    <MenuItem value={'WI'}>WI</MenuItem>
+                                    <MenuItem value={'CO'}>CO</MenuItem>
+                                    <MenuItem value={'MN'}>MN</MenuItem>
+        
+                                </Select>
+                            </FormControl>
                                 <TextField
                                     label="Zipcode"
                                     value={zipcode}

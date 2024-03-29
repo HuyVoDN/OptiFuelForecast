@@ -7,7 +7,6 @@ const Home = () => {
         <>
             <div className="home">
                 <div className="desc">
-                   
                     <h1>We explore to empower</h1>
                     <p>
                         Our cutting-edge oil fuel forecast system utilizes

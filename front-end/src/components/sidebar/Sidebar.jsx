@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
-import userProfilePic from '../../assets/profile.png';
 import { NavLink, useLocation, useNavigate, useParams } from 'react-router-dom';
 import {SidebarData} from './SidebarData.jsx';
+import Avatar from '@mui/material/Avatar';
 import './Sidebar.scss';
 import { AuthContext } from '../../context/authContext.jsx';
 import Axios from 'axios';
@@ -16,7 +16,7 @@ const Sidebar = () => {
   const [lastName, setLastName] = useState(sessionStorage.getItem('lastname') || '');
   const { username } = useParams();
   const sidebarItems = SidebarData();
-  
+  const avatarText = firstName.charAt(0) + lastName.charAt(0);
   const handleSignOut = async (e) => {
 
     e.preventDefault();
@@ -35,7 +35,7 @@ const Sidebar = () => {
     <>
       <div className="sidebar">
         <div className="sidebar-client-profile">
-          <img src={userProfilePic}  alt='profile' />
+          <Avatar className='avatar'>{avatarText}</Avatar> 
           <h1>{firstName} <br/> {lastName}</h1>
           </div>
         <nav className='nav-menu'>
