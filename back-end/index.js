@@ -1,15 +1,23 @@
-import express from 'express';
-import cors from 'cors';
-import { db } from './db.js';
-import authRoutes from './routes/auth.js';
-import testRoutes from './functionalitytest.js';
-import userRoutes from './routes/users.js';
-import quoteRoutes from './routes/quote.js';
+// import express from 'express';
+// import cors from 'cors';
+// import { db } from './db.js';
+// import authRoutes from './routes/auth.js';
+// import testRoutes from './functionalitytest.js';
+// import userRoutes from './routes/users.js';
+// import quoteRoutes from './routes/quote.js';
+const express = require('express');
+const cors = require('cors');
+const { db } = require('./db.js');
+const authRoutes = require('./routes/auth.js');
+const testRoutes = require('./functionalitytest.js');
+const userRoutes = require('./routes/users.js');
+const quoteRoutes = require('./routes/quote.js');
+const functionTest = require('./functionalitytest.js');
 const app = express();
 
 app.use(cors({
   credentials: true,
-  origin: ["http://localhost:5173"],
+  origin: ["https://optifuel-forecast.vercel.app"], 
   methods: ["GET", "POST", "PATCH"],
 }));
 
@@ -32,10 +40,11 @@ db.connect((error) => {
 app.get('/', (req, res) => {
   res.send('Nice, the backend is working.');
 }); //test
-
+app.get('/', functionTest); //test
 //app.use('/fuel')
 app.use('/auth', authRoutes);
 app.use('/users', userRoutes); 
 app.use('/', testRoutes);// testing for sql statements and db connection
 app.use('/quote', quoteRoutes); //quote routes
-export {app, server};
+
+module.exports = {app, server};

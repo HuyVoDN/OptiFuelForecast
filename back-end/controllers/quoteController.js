@@ -1,10 +1,12 @@
-import { db } from '../db.js';
-import PricingModule from '../pricingModule.js';
+// import { db } from '../db.js';
+// import PricingModule from '../pricingModule.js';
+const { db, closeConnection } = require("../db.js");
+const PricingModule = require("../pricingModule.js");
 // lets do bare min for now, so we'll only calculate the price based off in state vs out of state
 // if out of state we'll increase 10%, in state we reduce by 5%
 // if a isRepeatCustomer == true ( the user's fuelQuote count is >= 1) we'll reduce by 10%
 
-export const getFuelQuotes = async (req, res) => {
+const getFuelQuotes = async (req, res) => {
     const query = `
         SELECT q.* FROM OptiFuelForecast.Quotes q
         JOIN OptiFuelForecast.Users u ON q.id_user = u.id_user
@@ -18,7 +20,7 @@ export const getFuelQuotes = async (req, res) => {
         
     });
 };
-export const createFuelQuote = async (req, res) => {
+const createFuelQuote = async (req, res) => {
     const { address, city, state, zipcode, date, gallonsRequested } = req.body;
     if (!address || !city || !state || !zipcode || !date || !gallonsRequested) {
         return res.status(400).json("Missing required fields");
@@ -66,3 +68,5 @@ export const createFuelQuote = async (req, res) => {
         return res.status(500).send("Error in server");
     }
 };
+
+module.exports = { getFuelQuotes, createFuelQuote };

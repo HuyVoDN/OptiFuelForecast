@@ -36,9 +36,9 @@ const FuelQuoteForm = () => {
             date: convertDateToSQLFormat(DeliveryDate),
             gallonsRequested: FuelAmount
         };
-        Axios.post(`http://localhost:3000/quote/${username}`, postData).then((response) => {
+        Axios.post(`https://optifuel-forecast-server.vercel.app/quote/${username}`, postData).then((response) => {
             // response handling
-            return Axios.get(`http://localhost:3000/quote/${username}`);
+            return Axios.get(`https://optifuel-forecast-server.vercel.app/quote/${username}`);
         }).then((response) => {
 
             let lastIndex = response.data.result.length - 1;

@@ -37,8 +37,13 @@ After project we can add light/dark mode, would be dope.
 - Fixed Bug #3 on 3/7/2024
 - Add unit tests to every functionality of backend, just create a new folder called test or something like that lol :5head:
 
+<<<<<<< HEAD
 ### Huy - 3/27/2024
 - I want to make it so when you change your first and last name on Client Profile, it'll rerenders the Sidebar component correctly right away instead of having to log out and login.
 - It always have an error where it'll take a frame to render "undefined" then renders correctly, probably due to the nature of Axios.get() method
 - I'm also adding a new column in the database called profilePic where the user is allowed to change their pfp, if they dont want to, it'll display the template pfp instead. When the click on the pfp on the sidebar, the user is prompted to change the pfp or not.
 - These changes will be added to main once I have fixed all bugs.
+=======
+### Huy - 3/25/2024
+- Remember to change alot of the api routes within front-end once I set up backend hosting.
+>>>>>>> main

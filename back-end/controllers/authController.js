@@ -1,9 +1,11 @@
-import { db } from "../db.js";
-import bcrypt from "bcrypt"; // for password hashing, register 
-import jwt from "jsonwebtoken"; // for token generation, login
+// import { db } from "../db.js";
+// import bcrypt from "bcrypt"; // for password hashing, register 
+// import jwt from "jsonwebtoken"; // for token generation, login
+const { db, closeConnection } = require("../db.js");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
-
-export const register = async (req, res) => {
+ const register = async (req, res) => {
 
     const getUserByEmail = (email) => {
         const query = "SELECT * FROM OptiFuelForecast.Users WHERE email = ?";
@@ -46,7 +48,7 @@ export const register = async (req, res) => {
     }
 };
 
-export const login = async (req, res) => {
+ const login = async (req, res) => {
 
     const getUserByEmail = (email) => {
         const query = "SELECT * FROM OptiFuelForecast.Users WHERE email = ?";
@@ -89,9 +91,11 @@ export const login = async (req, res) => {
         return res.status(500).send("Error in server");
     }
 }
-export const logout = (req, res) => {
+ const logout = (req, res) => {
 
     res.clearCookie("token", {httpOnly: true, sameSite: 'strict',});
     console.log(`User has been logged out successfully. `);
     return res.status(200).json({ message: "User has been logged out successfully." });
 }
+
+module.exports = { register, login, logout };

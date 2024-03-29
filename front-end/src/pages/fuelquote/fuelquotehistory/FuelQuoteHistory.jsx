@@ -23,7 +23,7 @@ const FuelQuoteHistory = () => {
     }
 
     useEffect(() => {
-        Axios.get(`http://localhost:3000/quote/${username}`).then((response) => {
+        Axios.get(`https://optifuel-forecast-server.vercel.app/quote/${username}`).then((response) => {
             const data = response.data.result;
             const mappedData = data.map(item => ({ ...item, id: item.idQuotes, DeliveryDate: formatDate(item.date), DeliveryAddress: item.address, FuelAmount: item.gallonsRequested, TotalAmountDue: item.totalAmountDue, suggestedPricePerGallon: item.suggestedPrice }));
             setRows(mappedData);

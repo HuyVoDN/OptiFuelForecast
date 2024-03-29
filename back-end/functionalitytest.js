@@ -1,9 +1,10 @@
 // test to see if database is connected, and if sql statements are correct 
 // for back end
 
-import express from 'express';
-import {db} from './db.js';
-
+// import express from 'express';
+// import {db} from './db.js';
+const express = require('express');
+const { db, closeConnection } = require('./db.js');
 const router = express.Router();
 
 router.get('/test', (req, res) => {
@@ -18,4 +19,4 @@ router.get('/test', (req, res) => {
   });
 });
 
-export default router;
+module.exports = router;

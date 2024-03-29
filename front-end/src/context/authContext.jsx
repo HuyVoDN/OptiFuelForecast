@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await Axios.post('http://localhost:3000/auth/login', {
+      const response = await Axios.post('https://optifuel-forecast-server.vercel.app/auth/login', {
         email: email,
         password: password,
       });
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      const response = await Axios.post('http://localhost:3000/auth/logout');
+      const response = await Axios.post('https://optifuel-forecast-server.vercel.app/auth/logout');
 
       setAuthState({
         token: null,
