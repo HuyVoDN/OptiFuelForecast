@@ -14,7 +14,7 @@ const ClientProfile = () => {
     const [city, setCity] = useState('');
     const [state, setState] = useState('');
     const [zipcode, setZipcode] = useState('');
-    
+
     const [isEditing, setIsEditing] = useState(false);
     const { username } = useParams();
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ const ClientProfile = () => {
     const handleEdit = () => {
         setIsEditing(!isEditing);
     };
-    
+
     useEffect(() => {
         Axios.get(`http://localhost:3000/users/${username}`)
             .then((response) => {
@@ -43,9 +43,9 @@ const ClientProfile = () => {
                     navigate('/404');
                 }
             });
-    }, [username, navigate]);   
+    }, [username, navigate]);
 
-   
+
     const handleSubmit = (e) => {
         e.preventDefault();
         Axios.patch(`http://localhost:3000/users/${username}`, {
@@ -74,11 +74,9 @@ const ClientProfile = () => {
                     <div className="profile-row">
                         <h1>My Profile</h1>
                         <img onClick={handleEdit} className='pencil-icon' src={pencilIcon}></img>
-                        </div>
-
+                    </div>
                     <form id="client-profile-form" onSubmit={handleSubmit}>
                         <div className="form-row">
-
                             <TextField
                                 label="First Name"
                                 value={firstName}
@@ -163,7 +161,7 @@ const ClientProfile = () => {
                                     <MenuItem value={'WI'}>WI</MenuItem>
                                     <MenuItem value={'CO'}>CO</MenuItem>
                                     <MenuItem value={'MN'}>MN</MenuItem>
-                                    {/* Add more MenuItem components for other states */}
+        
                                 </Select>
                             </FormControl>
                             <TextField
@@ -181,7 +179,7 @@ const ClientProfile = () => {
                             <Button type="submit" className="btn" variant="contained" color="primary" style={{ borderRadius: 50 }}>
                                 Save
                             </Button>
-                           
+
                         </div>
                     </form>
                 </div>

@@ -3,11 +3,11 @@
 .client-profile {
     font-family: 'Roboto', sans-serif;
     padding: 0;
-
     .main-content{
         display: flex;
         
         .container {
+           justify-content: center;
             max-width: 800px; /* Increase the max-width */
             margin: 50px;
             padding: 30px; /* Increase the padding */
@@ -28,7 +28,7 @@
                     width:35px;
                     height:35px;
                     border-radius: 50%;
-                   border: 2px solid rgb(0, 0, 112);
+                   border: 1px solid rgb(0, 0, 112);
                     position: relative;
                   
                     &:hover{
