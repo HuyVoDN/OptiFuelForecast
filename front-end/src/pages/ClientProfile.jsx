@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import pencilIcon from '../assets/pencil_icon2.png';
 import { useParams, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import { TextField, Button, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
@@ -70,7 +71,10 @@ const ClientProfile = () => {
             <div className="main-content">
                 <Sidebar />
                 <div className="container">
-                    <h1>My Profile</h1>
+                    <div className="profile-row">
+                        <h1>My Profile</h1>
+                        <img onClick={handleEdit} className='pencil-icon' src={pencilIcon}></img>
+                        </div>
 
                     <form id="client-profile-form" onSubmit={handleSubmit}>
                         <div className="form-row">
@@ -177,9 +181,7 @@ const ClientProfile = () => {
                             <Button type="submit" className="btn" variant="contained" color="primary" style={{ borderRadius: 50 }}>
                                 Save
                             </Button>
-                            <Button onClick={handleEdit} className={`btn editbtn ${isEditing ? 'active' : ''}`} style={{ borderRadius: 50 }}>
-                                Edit
-                            </Button>
+                           
                         </div>
                     </form>
                 </div>

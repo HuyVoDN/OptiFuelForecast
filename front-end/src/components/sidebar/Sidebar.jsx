@@ -16,7 +16,7 @@ const Sidebar = () => {
   const [lastName, setLastName] = useState(sessionStorage.getItem('lastname') || '');
   const { username } = useParams();
   const sidebarItems = SidebarData();
-
+  
   const handleSignOut = async (e) => {
 
     e.preventDefault();
