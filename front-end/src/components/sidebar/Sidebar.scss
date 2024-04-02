@@ -2,7 +2,8 @@ $primary-color-darkblue: rgb(0, 0, 112);
 
 .sidebar
 {
-    // position:fixed;
+    bottom: 0;
+    position:sticky;
     display:flex;
     justify-content: flex-start;
     flex-direction: column;

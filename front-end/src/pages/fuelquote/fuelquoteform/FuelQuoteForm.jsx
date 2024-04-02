@@ -26,7 +26,28 @@ const FuelQuoteForm = () => {
     const { username } = useParams();
 
     // submit fuel quote form to the backend
-    const handleSubmit = (e) => {
+    const handleSuggestion = (e) => {
+        e.preventDefault();
+        const postData = {
+            address: DeliveryAddress,
+            city,
+            state,
+            zipcode,
+            date: convertDateToSQLFormat(DeliveryDate),
+            gallonsRequested: FuelAmount
+        };
+        Axios.post(`http://localhost:3000/quote/${username}/calculate`, postData).then((response) => {
+            // response handling
+            setSuggestedPrice(response.data.suggestedPricePerGallon);
+            setTotalAmountDue(response.data.totalAmountDue);
+            console.log(response.data);
+        }).catch(error => {
+            console.error(error);
+            setError(error);
+        });
+       
+    };
+    const handleNewForm = (e) => {
         e.preventDefault();
         const postData = {
             address: DeliveryAddress,
@@ -44,6 +65,7 @@ const FuelQuoteForm = () => {
             let lastIndex = response.data.result.length - 1;
             setSuggestedPrice(response.data.result[lastIndex].suggestedPrice);
             setTotalAmountDue(response.data.result[lastIndex].totalAmountDue);
+            console.log(`New Fuel Quote for ${username} has been created successfully!`);
         }).catch(error => {
             console.error(error);
             setError(error);
@@ -150,8 +172,11 @@ const FuelQuoteForm = () => {
                                 <p className="output-text">${TotalAmountDue}</p>
                             </div>
                             <div className="form-group button-container">
-                                <Button onClick={handleSubmit} className="submit-btn" variant="contained" color="primary" style={{ borderRadius: 50 }}>
-                                    Submit
+                                <Button onClick={handleSuggestion} className="submit-btn" variant="contained" color="primary" style={{ borderRadius: 50 }}>
+                                    Suggest 
+                                </Button>
+                                <Button onClick={handleNewForm} className="submit-btn" variant="contained" color="primary" style={{ borderRadius: 50 }}>
+                                    Add 
                                 </Button>
                             </div>
                         </form>
