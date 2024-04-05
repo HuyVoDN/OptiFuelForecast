@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Axios from "axios";
-import { TextField, Button, FormControl, MenuItem, Select, InputLabel } from '@mui/material';
+import { TextField, Button, FormControl, MenuItem, Select, InputLabel, Snackbar } from '@mui/material';
 import "./FuelQuoteForm.scss";
+import { STATES } from '../../../constants/stateOptions.js';
 
 const FuelQuoteForm = () => {
     function formatDate(dateString) {
         const date = new Date(dateString);
         return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
     }
-    function convertDateToSQLFormat(dateString) {
+    function convertDateToSQLFormat(dateString) {   
         const date = new Date(dateString);
         return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
     }
@@ -24,7 +25,8 @@ const FuelQuoteForm = () => {
     const [zipcode, setZipcode] = useState('');
     const [error, setError] = useState('');
     const { username } = useParams();
-
+    const isFormIncomplete = !DeliveryAddress || !DeliveryDate || !FuelAmount || !city || !state || !zipcode;
+    const[showPopup, setShowPopup] = useState(false);
     // submit fuel quote form to the backend
     const handleSuggestion = (e) => {
         e.preventDefault();
@@ -40,7 +42,7 @@ const FuelQuoteForm = () => {
             // response handling
             setSuggestedPrice(response.data.suggestedPricePerGallon);
             setTotalAmountDue(response.data.totalAmountDue);
-            console.log(response.data);
+            
         }).catch(error => {
             console.error(error);
             setError(error);
@@ -55,7 +57,9 @@ const FuelQuoteForm = () => {
             state,
             zipcode,
             date: convertDateToSQLFormat(DeliveryDate),
-            gallonsRequested: FuelAmount
+            gallonsRequested: FuelAmount,
+            suggestedPrice: SuggestedPrice,
+            totalAmountDue: TotalAmountDue
         };
         Axios.post(`http://localhost:3000/quote/${username}`, postData).then((response) => {
             // response handling
@@ -66,16 +70,42 @@ const FuelQuoteForm = () => {
             setSuggestedPrice(response.data.result[lastIndex].suggestedPrice);
             setTotalAmountDue(response.data.result[lastIndex].totalAmountDue);
             console.log(`New Fuel Quote for ${username} has been created successfully!`);
+            setShowPopup(true);
+            setTimeout(() => {
+                setShowPopup(false);
+            }, 5000);
+
         }).catch(error => {
             console.error(error);
             setError(error);
         });
        
     };
+
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setShowPopup(false);
+      };
+     
+    
     return (
         <>
             <div className="fuel-quote-form">
                 <div className="main-content">
+                <Snackbar
+        open={showPopup}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message="You have successfully added a new fuel quote!"
+        ContentProps={{
+            style: {fontSize: '17px', backgroundColor: 'rgb(0, 0, 112)', fontFamily:'Segoe UI', fontWeight: 'bold', height: '60px', textAlign: 'center', borderRadius: '10px'} 
+        }}
+       
+      />
+
                     <div className="container">
                         <h3>Fuel Quote Form</h3>
                         <form id="client-profile-form">
@@ -107,29 +137,11 @@ const FuelQuoteForm = () => {
                                     value={state}
                                     onChange={e => setState(e.target.value)}
                                 >
-                                    <MenuItem value={'TX'}>TX</MenuItem>
-                                    <MenuItem value={'NY'}>NY</MenuItem>
-                                    <MenuItem value={'CA'}>CA</MenuItem>
-                                    <MenuItem value={'FL'}>FL</MenuItem>
-                                    <MenuItem value={'PA'}>PA</MenuItem>
-                                    <MenuItem value={'IL'}>IL</MenuItem>
-                                    <MenuItem value={'OH'}>OH</MenuItem>
-                                    <MenuItem value={'GA'}>GA</MenuItem>
-                                    <MenuItem value={'NC'}>NC</MenuItem>
-                                    <MenuItem value={'MI'}>MI</MenuItem>
-                                    <MenuItem value={'NJ'}>NJ</MenuItem>
-                                    <MenuItem value={'VA'}>VA</MenuItem>
-                                    <MenuItem value={'WA'}>WA</MenuItem>
-                                    <MenuItem value={'AZ'}>AZ</MenuItem>
-                                    <MenuItem value={'MA'}>MA</MenuItem>
-                                    <MenuItem value={'TN'}>TN</MenuItem>
-                                    <MenuItem value={'IN'}>IN</MenuItem>
-                                    <MenuItem value={'MO'}>MO</MenuItem>
-                                    <MenuItem value={'MD'}>MD</MenuItem>
-                                    <MenuItem value={'WI'}>WI</MenuItem>
-                                    <MenuItem value={'CO'}>CO</MenuItem>
-                                    <MenuItem value={'MN'}>MN</MenuItem>
-        
+                                {STATES.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
                                 </Select>
                             </FormControl>
                                 <TextField
@@ -163,7 +175,7 @@ const FuelQuoteForm = () => {
                                 />
                             </div>
                             <div className="suggestedPrice-container">
-                                <p className="TotalOutput"> Suggested Price </p>
+                                <p className="TotalOutput"> Calculated Price </p>
                                 <p className="output-text-suggestion">${SuggestedPrice}</p>
                             </div>
                             {/* hardcoded values for now, for both suggested price and output */}
@@ -172,12 +184,28 @@ const FuelQuoteForm = () => {
                                 <p className="output-text">${TotalAmountDue}</p>
                             </div>
                             <div className="form-group button-container">
-                                <Button onClick={handleSuggestion} className="submit-btn" variant="contained" color="primary" style={{ borderRadius: 50 }}>
-                                    Suggest 
+                                <Button 
+                                    onClick={handleSuggestion} 
+                                    className="submit-btn" 
+                                    variant="contained" 
+                                    color="primary" 
+                                    style={{ borderRadius: 50 }}
+                                    disabled={isFormIncomplete}
+                                >
+                                    Calculate 
                                 </Button>
-                                <Button onClick={handleNewForm} className="submit-btn" variant="contained" color="primary" style={{ borderRadius: 50 }}>
-                                    Add 
+
+                                <Button 
+                                onClick={handleNewForm}
+                                className="submit-btn" 
+                                variant="contained" 
+                                color="primary" 
+                                style={{ borderRadius: 50 }}
+                                disabled={isFormIncomplete}
+                                >
+                                    Add
                                 </Button>
+                                
                             </div>
                         </form>
                     </div>
