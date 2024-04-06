@@ -5,7 +5,7 @@ import Search from "../search/Search";
 import Logo from "../../assets/optifuelforecastlogo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../context/authContext";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 
 const Navbar = () => {
@@ -20,7 +20,7 @@ const Navbar = () => {
                     <NavLink className="link" to='/'>Home</NavLink>
                     <NavLink className="link" to='/about'>About</NavLink>
                     { !authState.isAuthenticated ?
-                        <NavLink className="link" to= '/login'>Login</NavLink> 
+                        <NavLink className="link account" to= '/login'><AccountCircleIcon/></NavLink> 
                         : <NavLink className="link" to={`/${authState.username}/profile`}>My Profile</NavLink> 
                     }   
                 </nav>

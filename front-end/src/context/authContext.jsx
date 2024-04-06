@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await Axios.post('https://optifuel-forecast-server.vercel.app/auth/login', {
+      const response = await Axios.post(`${import.meta.env.VITE_SERVER_URL}/auth/login`, {
         email: email,
         password: password,
       });
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      const response = await Axios.post('https://optifuel-forecast-server.vercel.app/auth/logout');
+      const response = await Axios.post(`${import.meta.env.VITE_SERVER_URL}/auth/logout`);
 
       setAuthState({
         token: null,

@@ -40,10 +40,10 @@
                 color: black;
             }
 
-            .link.active {
+            .link:not(.account).active {
                 color: white;
                 background-color: #1d3354;
-                border-radius: 30px;
+                border-radius: 50px;
             }
 
             .link:not(.active):hover {

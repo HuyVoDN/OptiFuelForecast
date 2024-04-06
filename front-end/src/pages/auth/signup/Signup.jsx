@@ -35,7 +35,7 @@ function SignUpForm() {
 
         if (password === confirmPassword) {
             // login logic here (e.g., API call, authentication)
-            Axios.post('https://optifuel-forecast-server.vercel.app/auth/register', {
+            Axios.post(`${import.meta.VITE_SERVER_URL}/auth/register`, {
                 email: email,
                 username: username,
                 password: password,
