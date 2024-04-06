@@ -33,11 +33,15 @@
     
             .link {
                 padding-inline: 15px;
+                margin-inline: 5px;
+                margin-block: auto;
+                height: 35px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 text-decoration: none;
                 color: black;
+                cursor: pointer;
             }
 
             .link:not(.account).active {
