@@ -17,8 +17,9 @@ const app = express();
 
 app.use(cors({
   credentials: true,
-  origin: ["https://optifuel-forecast.vercel.app"], 
+  origin: ["https://optifuel-forecast.vercel.app", "http://localhost:5173"], 
   methods: ["GET", "POST", "PATCH"],
+  
 }));
 
 app.use(express.json());

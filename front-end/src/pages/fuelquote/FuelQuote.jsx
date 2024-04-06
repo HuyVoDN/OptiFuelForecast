@@ -19,7 +19,7 @@ const FuelQuote = () => {
     return (
         <>
         <div className="nav-fuel-container">
-            <Sidebar />
+            <Sidebar/>
             <div className="fuel-quote-container">
                 <TabContext value={value}>
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
