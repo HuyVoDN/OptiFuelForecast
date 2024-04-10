@@ -68,6 +68,7 @@
             h1,
             p {
                 opacity: 0;
+                transition: opacity 0.25s ease-in-out;
             }
 
             ::before,
@@ -77,6 +78,7 @@
 
             .link {
                 opacity: 1;
+                transition: opacity 0.65s ease-in-out;
             }
         }
 

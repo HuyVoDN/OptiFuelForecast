@@ -37,7 +37,7 @@ const Sidebar = () => {
         <div className="sidebar-client-profile">
           <Avatar className='avatar'>{avatarText}</Avatar> 
           <h1>{firstName} <br/> {lastName}</h1>
-          </div>
+        </div>
         <nav className='nav-menu'>
         <ul className ="sidebar-menu-items">
           {
