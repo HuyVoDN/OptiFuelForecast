@@ -8,6 +8,7 @@
     align-items: center;
     justify-content: flex-start;
     margin: 0;
+    position: relative;
 
     .desc {
         position: relative;
@@ -94,6 +95,38 @@
             margin-bottom: 2px;
         }
     }
+
+    .curve {
+        position: absolute;
+        height: 250px;
+        width: 100%;
+        bottom: 0;
+        text-align: center;
+        z-index: 100;
+      }
+
+      .curve::before {
+        content: '';
+        display: block;
+        position: absolute;
+        border-radius: 100% 50%;
+        width: 55%;
+        height: 100%;
+        transform: translate(85%, 65%);
+        background-color: #ff6d00;
+      }
+
+      .curve::after {
+        content: '';
+        display: block;
+        position: absolute;
+        border-radius: 100% 50%;
+        width: 55%;
+        height: 100%;
+        background-color: #3d31dd;
+        transform: translate(-4%, 45%);
+        z-index: -1;
+      }
 
 }
 
