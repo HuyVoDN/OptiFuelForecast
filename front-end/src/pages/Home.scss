@@ -1,134 +1,142 @@
-.home {
-    background-image: url('https://cdn.hswstatic.com/gif/gettyimages-ec2879-002.jpg');
-    background-size: cover;
-    //width: 100vw;
-    height: 100vh;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 0;
+.home-container {
     position: relative;
 
-    .desc {
+    .home {
+        background-image: url('https://cdn.hswstatic.com/gif/gettyimages-ec2879-002.jpg');
+        background-size: cover;
+        //width: 100vw;
+        height: 100vh;
+        background-repeat: no-repeat;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0;
         position: relative;
-        overflow: hidden;
-        margin: 0 100px;
-        color: white;
 
-        h1,
-        p {
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        ::before,
-        ::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: white;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        ::before {
-            top: 0;
-            transform: scaleX(0);
-        }
-
-        ::after {
-            right: 0;
-            bottom: 0;
-            transform: scaleX(0);
-        }
-
-        .link {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            font-size: 40px;
-            font-weight: bold;
-            color: rgb(255, 255, 255);
-            text-decoration: none;
-            transition: opacity 0.5s ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            &:hover {
-                color: rgb(255, 255, 255);
-                text-decoration: none;
-            }
-        }
-
-        &:hover {
+        .desc {
+            position: relative;
+            overflow: hidden;
+            margin: 0 100px;
+            color: white;
 
             h1,
             p {
-                opacity: 0;
-                transition: opacity 0.25s ease-in-out;
+                transition: opacity 0.5s ease-in-out;
             }
 
             ::before,
             ::after {
-                transform: scaleX(1);
+                content: '';
+                position: absolute;
+                width: 100%;
+                height: 2px;
+                background: white;
+                transition: transform 0.5s ease-in-out;
+            }
+
+            ::before {
+                top: 0;
+                transform: scaleX(0);
+            }
+
+            ::after {
+                right: 0;
+                bottom: 0;
+                transform: scaleX(0);
             }
 
             .link {
-                opacity: 1;
-                transition: opacity 0.65s ease-in-out;
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                font-size: 40px;
+                font-weight: bold;
+                color: rgb(255, 255, 255);
+                text-decoration: none;
+                transition: opacity 0.5s ease-in-out;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                &:hover {
+                    color: rgb(255, 255, 255);
+                    text-decoration: none;
+                }
+            }
+
+            &:hover {
+
+                h1,
+                p {
+                    opacity: 0;
+                    transition: opacity 0.25s ease-in-out;
+                }
+
+                ::before,
+                ::after {
+                    transform: scaleX(1);
+                }
+
+                .link {
+                    opacity: 1;
+                    transition: opacity 0.65s ease-in-out;
+                }
+            }
+
+            h1 {
+                font-weight: bolder;
+                font-size: 3rem;
+                text-align: left;
+                align-items: flex-start;
+                justify-content: center;
+            }
+
+            p {
+                margin-bottom: 2px;
             }
         }
 
-        h1 {
-            font-weight: bolder;
-            font-size: 3rem;
-            text-align: left;
-            align-items: flex-start;
-            justify-content: center;
+        .spacer1 {
+            aspect-ratio: 900 / 300;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: absolute;
+            // top: 69vh;
+            bottom: -70px;
         }
-
-        p {
-            margin-bottom: 2px;
+    
+        .curve1 {
+            background-image: url('../assets/waves-top.svg');
+            // z-index: 99;
         }
     }
 
-    .curve {
-        position: absolute;
-        height: 250px;
-        width: 100%;
-        bottom: 0;
-        text-align: center;
-        z-index: 100;
-      }
+    .about-container {
+        position: relative;
+        padding-top: 100px;
 
-      .curve::before {
-        content: '';
-        display: block;
-        position: absolute;
-        border-radius: 100% 50%;
-        width: 55%;
-        height: 100%;
-        transform: translate(85%, 65%);
-        background-color: #ff6d00;
-      }
-
-      .curve::after {
-        content: '';
-        display: block;
-        position: absolute;
-        border-radius: 100% 50%;
-        width: 55%;
-        height: 100%;
-        background-color: #3d31dd;
-        transform: translate(-4%, 45%);
-        z-index: -1;
-      }
-
+        .spacer2 {
+            aspect-ratio: 900 / 300;
+            width: 100%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            position: absolute;
+            top: 0;
+        }
+    
+        .curve2 {
+            background-image: url('../assets/layered-waves-bkg.svg');
+            z-index: 1;
+        }
+    }
 }
+    
 
 @keyframes slideIn {
     0% {
