@@ -21,16 +21,36 @@ export const MissionSlide = () => {
 
 export const StorySlide = () => {
     return (
-        <div>
-            Story Slide..
+        <div className='story-slide-container'>
+            <div className="story-content">
+                <div className="img-container">
+                    <img src={OurMission} />
+                </div>
+                <div className="story-text">
+                    <h1>Our Story</h1>
+                    <span>
+                        our story filler text
+                    </span>
+                </div>
+            </div>
         </div>
     );
 }
 
 export const PeopleSlide = () => {
     return (
-        <div>
-            People Slide..
+        <div className='people-slide-container'>
+            <div className="people-content">
+                <div className="img-container">
+                    {/* <img src={OurMission} /> */}
+                </div>
+                <div className="people-text">
+                    <h1>Our People</h1>
+                    <span>
+                        our people filler text
+                    </span>
+                </div>
+            </div>
         </div>
     );
 }

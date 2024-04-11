@@ -30,7 +30,8 @@
             padding-inline: 3em;
             flex: 1;
             text-align: left;
-            color: var(--primary);
+            color: #1F486F;
+            letter-spacing: 2px;
             justify-content: flex-end;
             height: 100%;
 
@@ -47,3 +48,53 @@
         }
     }
 }
+
+.story-slide-container {
+    background-color: #1F486F;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    .story-content {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        font-family: Montserrat;
+
+        .img-container {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            justify-content: flex-end;
+
+            img {
+                width: 80%;
+            }
+        }
+
+        .story-text {
+            display: flex;
+            flex-direction: column;
+            padding-inline: 3em;
+            flex: 1;
+            text-align: left;
+            color: #1F486F;
+            letter-spacing: 2px;
+            justify-content: flex-end;
+            height: 100%;
+
+            h1 {
+                font-weight: bold;
+                font-size: 60px;
+            }
+            
+            span {
+                font-size: 18px;
+                padding-right: 7em;
+                color: whitesmoke;
+            }
+        }
+    }
+}
+

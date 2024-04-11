@@ -1,4 +1,3 @@
-// import ReactDOM from "https://cdn.skypack.dev/react-dom";
 import { useState, useEffect } from "react";
 import "./carousel.scss"; 
 import { MissionSlide, StorySlide, PeopleSlide } from "./carouselItems";

@@ -18,11 +18,11 @@ const Home = () => {
                         we strive to contribute <br />to a sustainable and efficient
                         energy landscape.
                     </p>
-                    <Link className="link" to="/about">LEARN MORE</Link>
+                    <a className="link" href="#about-section">LEARN MORE</a>
                 </div>
                 <div className="spacer1 curve1"></div>
             </div>
-            <div className="about-container">
+            <div id="about-section" className="about-container">
                 <div className="spacer2 curve2"></div>
                 <About/>
             </div>
