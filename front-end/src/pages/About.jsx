@@ -3,11 +3,18 @@ import "./About.scss";
 
 const About = () => {
   return (
-    <div>
+    <about className="footer">
+
+    <div className="header">
         <h2>About</h2>
-        <p>Describe the Fuel Form purposes</p>
     </div>
-  )
-}
+
+    <div className="content_about">
+      <p>Describe the Fuel Form purposes</p>
+    </div>
+
+    </about>
+  );
+};
 
 export default About
