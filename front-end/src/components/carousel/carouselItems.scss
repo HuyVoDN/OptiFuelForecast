@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-.mission-slide-container {
+.slide-container {
     background-color: #fd7e34;
     height: 100%;
     width: 100%;
     display: flex;
     align-items: center;
 
-    .mission-content {
+    .slide-content {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -21,62 +21,16 @@
 
             img {
                 width: 80%;
+                border-radius: 40px;
+                box-shadow: 4px 4px 10px 4px rgba(0, 0, 0, 0.116);
             }
         }
 
-        .mission-text {
+        .slide-text {
             display: flex;
             flex-direction: column;
             padding-inline: 3em;
-            flex: 1;
-            text-align: left;
-            color: #1F486F;
-            letter-spacing: 2px;
-            justify-content: flex-end;
-            height: 100%;
-
-            h1 {
-                font-weight: bold;
-                font-size: 60px;
-            }
-            
-            span {
-                font-size: 18px;
-                padding-right: 7em;
-                color: whitesmoke;
-            }
-        }
-    }
-}
-
-.story-slide-container {
-    background-color: #1F486F;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    align-items: center;
-
-    .story-content {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        font-family: Montserrat;
-
-        .img-container {
-            display: flex;
-            align-items: center;
-            flex: 1;
-            justify-content: flex-end;
-
-            img {
-                width: 80%;
-            }
-        }
-
-        .story-text {
-            display: flex;
-            flex-direction: column;
-            padding-inline: 3em;
+            padding-right: 100px;
             flex: 1;
             text-align: left;
             color: #1F486F;

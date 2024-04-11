@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import "./carousel.scss"; 
-import { MissionSlide, StorySlide, PeopleSlide } from "./carouselItems";
+import { MissionSlide, StorySlide, TechnologySlide } from "./carouselItems";
 
 const items = [
     <MissionSlide/>,
     <StorySlide/>,
-    <PeopleSlide/>
+    <TechnologySlide/>
 ]
 
 const Card = ({children}) => {

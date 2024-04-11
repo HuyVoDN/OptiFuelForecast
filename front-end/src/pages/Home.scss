@@ -100,15 +100,16 @@
         }
 
         .spacer1 {
-            // aspect-ratio: 900 / 300;
-            height: auto;
+            aspect-ratio: 900 / 300;
+            // height: auto;
             width: 100%;
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
             position: absolute;
             // top: 69vh;
-            bottom: -70px;
+            bottom: -80px;
+            pointer-events: none;
         }
     
         .curve1 {
@@ -129,6 +130,7 @@
             background-size: cover;
             position: absolute;
             top: 0;
+            pointer-events: none;
         }
     
         .curve2 {
