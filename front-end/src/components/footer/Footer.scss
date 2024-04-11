@@ -1,5 +1,6 @@
 .footer{
     background-color: black;
+    color: white;
     padding: 20px;
 }
 
@@ -8,3 +9,13 @@
     color: white;
     font-family: 'Times New Roman', Times, serif;
 }
+
+.footer_links{
+    display: flex;
+}
+
+.copyright {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+  }
