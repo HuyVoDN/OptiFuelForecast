@@ -1,11 +1,33 @@
 import React from "react";
+import "./Footer.scss";
+import Logo from "../../assets/optifuelforecastlogo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
-        <div>
-            <h1>Footer</h1>
+        <footer className="footer">
+
+        <div className="container_logo">
+            <div className="logo">
+                <Link to='/'><img className="optiLogo" src={Logo} alt="logo" /></Link>
+            </div>
         </div>
+
+        <div className="footer_links">
+            <Link className="link" to='/'>Home</Link>
+            <Link className="link" to='/about'>About</Link>
+        </div>
+
+        <div className="footer-content">
+            <p>OptiFuelForecast</p>
+        </div>
+
+        <div className="copyright">
+            <p>&copy; 2024 OptiFuelForecast. All rights reserved.</p>
+        </div>
+
+        </footer>
     );
 };
 
-export default Footer
+export default Footer;

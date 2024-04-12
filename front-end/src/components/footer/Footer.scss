@@ -1,0 +1,40 @@
+.footer{
+    background-color: white;
+    color: black;
+    padding: 20px;
+}
+
+.container_logo{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+
+.logo {
+    height: 100%;
+    width: 240px;
+    margin-left: 15px;
+}
+
+.footer-content{
+    text-align: left;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.footer_links{
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.6px;
+    font-weight: 300;
+    font-style: normal;
+    display: flex;
+    margin-right: 10px;
+}
+
+.copyright {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 8px;
+  }
