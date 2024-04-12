@@ -4,6 +4,12 @@
     padding: 20px;
 }
 
+.logo {
+    height: 100%;
+    width: 240px;
+    margin-left: 15px;
+}
+
 .footer-content{
     text-align: left;
     color: white;
@@ -11,11 +17,16 @@
 }
 
 .footer_links{
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.6px;
+    font-weight: 300;
+    font-style: normal;
     display: flex;
+    margin-right: 10px;
 }
 
 .copyright {
-    text-align: center;
+    text-align: right;
     margin-top: 20px;
-    font-size: 14px;
+    font-size: 8px;
   }
