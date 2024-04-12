@@ -1,71 +1,64 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./carousel.scss"; 
 import { MissionSlide, StorySlide, TechnologySlide } from "./carouselItems";
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 
 const items = [
     <MissionSlide/>,
     <StorySlide/>,
     <TechnologySlide/>
-]
-
-const Card = ({children}) => {
-  return (
-    <li className="card">
-        {children}
-      {/* <span class="material-icons">{props.icon}</span>
-      <p>{props.copy}</p> */}
-    </li>
-  )
-}
+];
 
 const Carousel = () => {
-  const [moveClass, setMoveClass] = useState('');
-  const [carouselItems, setCarouselItems] = useState(items);
-  
-  useEffect(() => {
-    document.documentElement.style.setProperty('--num', carouselItems.length);
-  }, [carouselItems])
-  
-  const handleAnimationEnd = () => {
-    if(moveClass === 'prev'){
-      shiftNext([...carouselItems]);
-    }else if(moveClass === 'next'){
-      shiftPrev([...carouselItems]);
+    const [currentItemIndex, setCurrentItemIndex] = useState(0);
+
+    const nextIndex = () => {
+        return currentItemIndex !== items.length - 1 ? currentItemIndex + 1 : 0;
     }
-    setMoveClass('')
-  }
-  
-  const shiftPrev = (copy) => {
-    let lastcard = copy.pop();
-    copy.splice(0, 0, lastcard);
-    setCarouselItems(copy);
-  }
-  
-  const shiftNext = (copy) => {
-    let firstcard = copy.shift();
-    copy.splice(copy.length, 0, firstcard);
-    setCarouselItems(copy);
-  }
-  
-  return (
-    <div className="carouselwrapper module-wrapper carousel-container">
-        <div className="ui">
-            <button onClick={() => setMoveClass('next')} className="prev">
-            <span className="material-icons">chevron_left</span>
-            </button>
-            <button onClick={() => setMoveClass('prev')} className="next">
-            <span className="material-icons">chevron_right</span>
-            </button>
+    const prevIndex = () => {
+        return currentItemIndex !== 0 ? currentItemIndex - 1 : items.length - 1;
+    }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentItemIndex(current => {
+                return current !== items.length - 1 ? current + 1 : 0;
+            });
+        }, 10000);
+    
+        return () => clearInterval(interval);
+    }, []); 
+    
+
+    return (
+        <div className="carouselwrapper">
+            <div className="interface-container">
+                <div className="interface">
+                    <button className="prev-button interface-button" onClick={() => setCurrentItemIndex(prevIndex())}>
+                        <ArrowBackIosNewIcon />
+                    </button>
+                    <button className="next-button interface-button" onClick={() => setCurrentItemIndex(nextIndex())}>
+                        <ArrowForwardIosIcon />
+                    </button>
+                    <div className="slide-nav">
+                        <span className={0 === currentItemIndex ? 'dot active-dot' : 'dot'} onClick={() => setCurrentItemIndex(0)}></span>
+                        <span className={1 === currentItemIndex ? 'dot active-dot' : 'dot'} onClick={() => setCurrentItemIndex(1)}></span>
+                        <span className={2 === currentItemIndex ? 'dot active-dot' : 'dot'} onClick={() => setCurrentItemIndex(2)}></span>
+                    </div>
+                </div>
+            </div>
+            <div className="carousel-items-container">
+                {items.map((item, index) => 
+                    <div key={index} className={index === currentItemIndex ? 'card current-item' :
+                                                index === prevIndex() ? 'card previous-item' :
+                                                index === nextIndex() ? 'card next-item' : 'card'}>
+                        {item}
+                    </div>
+                )}
+            </div>
         </div>
-        <ul onAnimationEnd={handleAnimationEnd} className={`${moveClass} carousel`}>
-            {carouselItems.map((item, index) => 
-            <Card key={index}>
-                {item}
-            </Card>
-            )}
-        </ul>
-    </div>
-  )
+    )
 }
 
 export default Carousel;

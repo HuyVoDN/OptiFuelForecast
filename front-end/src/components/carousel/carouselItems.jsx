@@ -51,10 +51,10 @@ export const TechnologySlide = () => {
                     <span>
                     At the heart of OptiFuelForecast is our proprietary forecasting algorithm, which analyzes historical data, market trends, geopolitical events, and environmental factors to predict fuel price movements. This technology is constantly refined by our team of experts to ensure the highest accuracy and relevance of our quotes.
                     </span>
-                    <p><strong>Proprietary Forecasting Algorithm:</strong> Utilizes historical data, market trends, geopolitical events, and environmental factors to predict fuel price movements with high accuracy.</p>
-                    <p><strong>User-Centric Design:</strong> Features an intuitive interface that simplifies the process of accessing forecasts, placing fuel orders, and managing procurement, tailored for ease of use.</p>
-                    <p><strong>Customized Solutions:</strong> Offers tailored forecasting solutions based on specific geographical regions, fuel types, and time frames to meet unique business needs.</p>
-                    <p><strong>Security & Reliability:</strong> Adheres to the highest standards of data protection and privacy with robust security measures and ensures platform reliability for consistent access.</p>
+                    <p><strong>Proprietary Forecasting Algorithm:</strong> Leverages historical data and current events to accurately predict fuel prices</p>
+                    <p><strong>User-Centric Design:</strong> Offers an intuitive interface for easy forecast access, fuel ordering, and procurement management</p>
+                    <p><strong>Customized Solutions:</strong> Provides forecasting tailored to specific regions, fuel types, and time frames</p>
+                    <p><strong>Security & Reliability:</strong> Ensures top-tier data security and consistent platform availability</p>
                 </div>
             </div>
         </div>

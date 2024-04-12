@@ -1,126 +1,108 @@
-@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans+Condensed:wght@300&display=swap');
-
-.carousel-container {
-  --up: 1;
-  --card-margin: 12px;
-  --card-shadow: rgba(46, 49, 52, .4);
-  --color-white: #fff;
-  --color-lightgrey: #ccc;
-  --color-ui: #999;
-  --color-ui-hover: #666;
-  --cardWidth: 100vw;
-  --carouselWidth: calc(var(--cardWidth) * var(--num));
-  --carouselLeftMargin: calc(2vw - var(--cardWidth));
-  
-  @media screen and (max-width: 900px) { 
-    --up: 1;
-  }
-}
-
 .carouselwrapper {
-    overflow: hidden;
-    background:var(--color-lightgrey);
-    position:relative;
-}
-
-.carousel{
-    width: var(--carouselWidth);
-    margin: 0 0 0 0;
-    display: flex;
-    height: 90vh;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
+  overflow: hidden;
+  background: #fd7e34;
+  position:relative;
   
-  &.prev {
-    animation-duration: .6s;
-    animation-timing-function:cubic-bezier(0.83, 0, 0.17, 1);
-    animation-name: prev;
-  }
-  
-  &.next {
-    animation-duration: .6s;
-    animation-timing-function:cubic-bezier(0.83, 0, 0.17, 1);
-    animation-name: next;
-  }
-  
-  li {
-    // padding: 50px;
-    text-align: center;
-    width: 100vw;
-    // width: calc(var(--cardWidth) - var(--card-margin) * 2);
-    box-sizing: border-box;
-  }  
-}
-
-.ui{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    width: calc(100% - var(--card-margin) * 2);
-    justify-content: space-between;
-    padding: var(--card-margin);
-    z-index: 100;
-  
-    button {
-      cursor: pointer;
+  .carousel-items-container {
+      position: relative;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      // background:var(--color-ui);
-      background-color: #1F486F;
-      width:40px;
-      height:40px;
-      border-radius:50%;
-      color:whitesmoke;
-      box-shadow: 0px 2px 5px 1px rgba(0,0,0,.25);
-      border: 0;
-      transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+      width: 100vw;
+      height: 100vh;
       
-      &:hover {
-        background: var(--color-ui-hover);
-      }
-      
-      &:focus{
-        outline:none;
-        border: 1px solid rgba(255, 255, 255, 1);
-      }
-  }
-}
-
-.card {
-    box-shadow: 0px 1px 2px 0px var(--card-shadow);
-    border-radius: 4px;
-    background:var(--color-white);
-    height: 100%;
+      .card {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          transition: transform 0.75s ease-in-out, opacity 0.75s ease-in-out;
+          border: 0;
   
-    .material-icons {
-      font-size: 4.8rem;
-    }
+          &.current-item {
+              z-index: 3;
+              opacity: 1;
+          }
   
-    p {
-      font-family: 'Open Sans Condensed', sans-serif;
-      font-size: 1.4rem;
-      margin-bottom: 0;
-    }
-}
-
-@keyframes next {
-  from {
-    transform:translateX(0px);
-  }
-  to {
-    transform:translateX(calc(0px + var(--cardWidth)));
+          &.previous-item {
+              transform: translateX(-100%);
+              opacity: 0;
+          }
+          &.next-item {
+              transform: translateX(100%);
+              opacity: 0;
+          }
+      }
   }
 }
 
-@keyframes prev {
-  from {
-    transform:translateX(0px);
+
+.interface-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  pointer-events: none;
+
+  .interface {
+      position: relative;
+      width: 100%;
+      height: 100%;
+
+      .interface-button {
+          position: absolute;
+          cursor: pointer;
+          pointer-events: all;
+
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #1F486F;
+          width:40px;
+          height:40px;
+          border-radius:50%;
+          color:whitesmoke;
+          box-shadow: 0px 2px 5px 1px rgba(0,0,0,.25);
+          border: 0;
+          transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        
+        &:hover {
+          background: #666;
+        }
+
+
+        &.prev-button {
+          left: 1em;
+          top: 50%;
+          transform: translate(0%, -50%);
+        }
+        &.next-button {
+          right: 1em;
+          top: 50%;
+          transform: translate(0%, -50%);
+        }
+      }
+
+      .slide-nav {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 25px;
+
+        .dot {
+          height: 20px;
+          width: 20px;
+          background-color: rgba(245, 245, 245, 0.467);
+          border-radius: 50%;
+          display: inline-block;
+          margin-inline: 8px;
+          pointer-events: all;
+          cursor: pointer;
+
+          &.active-dot {
+            background-color: #1f486fca;
+          }
+        }
+      }
   }
-  to {
-    transform:translateX(calc(0px - var(--cardWidth)));
-  }
+
 }

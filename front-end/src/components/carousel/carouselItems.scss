@@ -11,6 +11,7 @@
         display: flex;
         flex-direction: row;
         width: 100%;
+        padding-top: 2em;
         font-family: Montserrat;
 
         .img-container {
@@ -37,6 +38,7 @@
             letter-spacing: 2px;
             justify-content: flex-end;
             height: 100%;
+            max-width: 1000px;
 
             h1 {
                 font-weight: bold;
@@ -45,17 +47,16 @@
             
             span {
                 font-size: 18px;
-                padding-right: 7em;
                 color: whitesmoke;
             }
 
             p {
                 // text-align: left;
                 color: #1f486f;
-                font-weight: 600;
+                font-weight: 500;
 
-                strong {
-                }
+                // strong {
+                // }
             }
         }
     }

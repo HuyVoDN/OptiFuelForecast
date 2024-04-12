@@ -18,7 +18,6 @@ const Navbar = () => {
             <div className="mainnavbar-right">
                 <nav className="mainnavbar-links">
                     <NavLink className="link" to='/'>Home</NavLink>
-                    <NavLink className="link" to='/about'>About</NavLink>
                     { !authState.isAuthenticated ?
                         <NavLink className="link account" to= '/login' style={{color: "#1d3354"}}><AccountCircleIcon/></NavLink> 
                         : <NavLink className="link account" to={`/${authState.username}/profile`} style={{color: "#1d3354"}}><AccountCircleIcon/></NavLink> 

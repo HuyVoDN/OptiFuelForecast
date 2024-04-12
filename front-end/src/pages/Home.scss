@@ -108,13 +108,12 @@
             background-size: cover;
             position: absolute;
             // top: 69vh;
-            bottom: -80px;
+            bottom: -50px;
             pointer-events: none;
         }
     
         .curve1 {
             background-image: url('../assets/waves-top.svg');
-            // z-index: 99;
         }
     }
 
@@ -135,7 +134,7 @@
     
         .curve2 {
             background-image: url('../assets/layered-waves-bkg.svg');
-            z-index: 1;
+            z-index: 10;
         }
     }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.scss";
 import { Link } from "react-router-dom";
 import About from '../pages/about/About';
+import ArrowDown from '../assets/arrow-down.svg';
 
 const Home = () => {
     return (
@@ -18,6 +19,14 @@ const Home = () => {
                         we strive to contribute <br />to a sustainable and efficient
                         energy landscape.
                     </p>
+                    <div style={{display: 'flex', alignItems:'center'}}>
+                        {/* <a className="learn-more" href="#about-section">LEARN MORE</a> */}
+                        <p>
+                            LEARN MORE
+                            <img src={ArrowDown} style={{height: '40px'}}/>
+                        </p>
+                        
+                    </div>
                     <a className="link" href="#about-section">LEARN MORE</a>
                 </div>
                 <div className="spacer1 curve1"></div>
