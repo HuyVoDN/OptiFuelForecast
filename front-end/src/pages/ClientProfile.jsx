@@ -4,6 +4,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import { TextField, Button, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
 import Sidebar from '../components/sidebar/Sidebar';
+import { Drawer } from '@mui/material';
+import { STATES } from '../constants/stateOptions';
 import './ClientProfile.scss';
 
 const ClientProfile = () => {
@@ -67,9 +69,10 @@ const ClientProfile = () => {
 
     };
     return (
+        <>
         <div className="client-profile">
             <div className="main-content">
-                <Sidebar />
+            <Sidebar />
                 <div className="container">
                     <div className="profile-row">
                         <h1>My Profile</h1>
@@ -139,28 +142,11 @@ const ClientProfile = () => {
                                     disabled={!isEditing}
                                     onChange={e => setState(e.target.value)}
                                 >
-                                    <MenuItem value={'TX'}>TX</MenuItem>
-                                    <MenuItem value={'NY'}>NY</MenuItem>
-                                    <MenuItem value={'CA'}>CA</MenuItem>
-                                    <MenuItem value={'FL'}>FL</MenuItem>
-                                    <MenuItem value={'PA'}>PA</MenuItem>
-                                    <MenuItem value={'IL'}>IL</MenuItem>
-                                    <MenuItem value={'OH'}>OH</MenuItem>
-                                    <MenuItem value={'GA'}>GA</MenuItem>
-                                    <MenuItem value={'NC'}>NC</MenuItem>
-                                    <MenuItem value={'MI'}>MI</MenuItem>
-                                    <MenuItem value={'NJ'}>NJ</MenuItem>
-                                    <MenuItem value={'VA'}>VA</MenuItem>
-                                    <MenuItem value={'WA'}>WA</MenuItem>
-                                    <MenuItem value={'AZ'}>AZ</MenuItem>
-                                    <MenuItem value={'MA'}>MA</MenuItem>
-                                    <MenuItem value={'TN'}>TN</MenuItem>
-                                    <MenuItem value={'IN'}>IN</MenuItem>
-                                    <MenuItem value={'MO'}>MO</MenuItem>
-                                    <MenuItem value={'MD'}>MD</MenuItem>
-                                    <MenuItem value={'WI'}>WI</MenuItem>
-                                    <MenuItem value={'CO'}>CO</MenuItem>
-                                    <MenuItem value={'MN'}>MN</MenuItem>
+                                    {STATES.map((option) => (
+                                    <MenuItem key={option.value} value={option.value}>
+                                        {option.label}
+                                    </MenuItem>
+                                ))}
         
                                 </Select>
                             </FormControl>
@@ -185,6 +171,7 @@ const ClientProfile = () => {
                 </div>
             </div>
         </div>
+        </>
     );
 }
 
