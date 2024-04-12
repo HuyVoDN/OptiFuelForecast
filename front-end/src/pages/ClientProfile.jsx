@@ -24,7 +24,7 @@ const ClientProfile = () => {
     };
 
     useEffect(() => {
-        Axios.get(`https://optifuel-forecast-server.vercel.app/users/${username}`)
+        Axios.get(`${import.meta.env.VITE_SERVER_URL}/users/${username}`)
             .then((response) => {
                 // Handle the response, e.g. set your state
                 const user = response.data;
@@ -48,7 +48,7 @@ const ClientProfile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        Axios.patch(`https://optifuel-forecast-server.vercel.app/users/${username}`, {
+        Axios.patch(`${import.meta.env.VITE_SERVER_URL}/users/${username}`, {
             firstName,
             lastName,
             address1,

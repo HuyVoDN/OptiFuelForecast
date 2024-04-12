@@ -33,17 +33,21 @@
     
             .link {
                 padding-inline: 15px;
+                margin-inline: 5px;
+                margin-block: auto;
+                height: 35px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
                 text-decoration: none;
                 color: black;
+                cursor: pointer;
             }
 
-            .link.active {
+            .link:not(.account).active {
                 color: white;
                 background-color: #1d3354;
-                border-radius: 30px;
+                border-radius: 50px;
             }
 
             .link:not(.active):hover {
