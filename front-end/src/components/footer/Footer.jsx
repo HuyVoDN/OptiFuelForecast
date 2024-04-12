@@ -1,13 +1,16 @@
 import React from "react";
 import "./Footer.scss";
 import Logo from "../../assets/optifuelforecastlogo.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
         <footer className="footer">
 
-        <div className="logo">
-            <Link to='/'><img className="optiLogo" src={Logo} alt="logo" /></Link>
+        <div className="container_logo">
+            <div className="logo">
+                <Link to='/'><img className="optiLogo" src={Logo} alt="logo" /></Link>
+            </div>
         </div>
 
         <div className="footer_links">
