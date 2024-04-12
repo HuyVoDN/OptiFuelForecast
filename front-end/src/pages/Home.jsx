@@ -1,5 +1,6 @@
 import React from "react";
 import "./Home.scss";
+import "./Footer.jsx";
 import { Link } from "react-router-dom";
 
 const Home = () => {
