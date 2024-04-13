@@ -6,35 +6,26 @@
 
 .container_logo{
     display: flex;
-    align-items: center;
-    margin: 0 auto;
-    padding: 0 20px;
 }
 
 
 .logo {
     height: 100%;
-    width: 240px;
-    margin-left: 15px;
+    width: 200px;
 }
 
-.footer-content{
-    text-align: left;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-}
-
-.footer_links{
+.footer-content_right{
+    text-align: center;
+    color: black;
     font-family: 'Roboto', sans-serif;
-    letter-spacing: 0.6px;
-    font-weight: 300;
-    font-style: normal;
-    display: flex;
-    margin-right: 10px;
+    display: block;
+}
+
+.footer_email{
+    text-align: center;
 }
 
 .copyright {
     text-align: right;
-    margin-top: 20px;
-    font-size: 8px;
+    font-size: 13px;
   }

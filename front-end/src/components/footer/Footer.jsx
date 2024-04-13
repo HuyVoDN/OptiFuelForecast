@@ -13,14 +13,15 @@ const Footer = () => {
             </div>
         </div>
 
-        <div className="footer_links">
-            <Link className="link" to='/'>Home</Link>
-            <Link className="link" to='/about'>About</Link>
+        <div className="contact-info">
+          <div className="email">
+            <span>Email: OptiFuelForecast@uh.com</span>
+          </div>
         </div>
 
-        <div className="footer-content">
-            <p>OptiFuelForecast</p>
-        </div>
+        <div className="phone">
+            <span>Phone: +1234567890</span>
+          </div>
 
         <div className="copyright">
             <p>&copy; 2024 OptiFuelForecast. All rights reserved.</p>
