@@ -1,3 +1,15 @@
+.about_wrapper{
+    background-image: url('https://cdn.hswstatic.com/gif/gettyimages-ec2879-002.jpg');
+    background-size: cover;
+    //width: 100vw;
+    height: 100vh;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 0;
+}
+
 .header{
     color: black;
     text-align: center;
@@ -6,8 +18,24 @@
 }
 
 .content_about{
-    color: black;
+    color: white;
     font-family: 'Times New Roman', Times, serif;
     font-size: medium;
     padding: 20px;
+
+    position: relative;
+    overflow: hidden;
+    margin: 0 100px;
+
+    h1 {
+        font-weight: bolder;
+        font-size: 3rem;
+        text-align: left;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    p {
+        margin-bottom: 2px;
+    }
 }
