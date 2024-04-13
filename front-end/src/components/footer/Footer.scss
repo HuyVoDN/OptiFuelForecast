@@ -4,6 +4,12 @@
     padding: 20px;
 }
 
+.footer_container{
+    display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .container_logo{
     display: flex;
 }
@@ -14,16 +20,19 @@
     width: 200px;
 }
 
-.footer-content_right{
-    text-align: center;
-    color: black;
-    font-family: 'Roboto', sans-serif;
-    display: block;
+.contact_info{
+    display: flex;
 }
 
-.footer_email{
-    text-align: center;
+.email , .phone{
+    margin-right: 30px;
+    font-size: large;
 }
+
+.email span, .phone span {
+    margin-left: 10px;
+  }
+
 
 .copyright {
     text-align: right;
