@@ -1,194 +1,173 @@
-import request from 'supertest';
-import { app, server } from '../index.js'; // import your express app
-import { db, closeConnection } from '../db.js'; // import your db connection
-import bcrypt from 'bcrypt';
-import {register, login, logout} from '../controllers/authController.js';
+const request = require('supertest');
+const { register, login, logout } = require('../controllers/authController.js');
+const { db, closeConnection } = require('../db.js');
+const bcrypt = require('bcryptjs');
+const express = require('express');
 
-jest.mock('../db');
+jest.mock('../db.js'); // Mock the db module
+describe('Test for authController', () => {
 
-describe('Auth Controllers', () => {
+  afterEach(() => {
+    jest.resetAllMocks();
+});
+
+afterAll(() => {
+    closeConnection();
+});
+  describe('login function', () => {
+    let app;
+  
+    beforeEach(() => {
+      app = express();
+      app.use(express.json());
+      app.post('/login', login);
+    });
+  
     afterEach(() => {
-        jest.resetAllMocks();
+      jest.clearAllMocks(); // Clear all mocks after each test
     });
-
-    afterAll(() => {
-        closeConnection();
-    });
-    describe('register', () => {
-        it('should register a new user', async () => {
-          const mockUser = {
-            email: 'test@gmail.com',
-            username: 'testuser',
-            password: bcrypt.hashSync('password', 10),
-          };
-      
-          const req = {
-            body: mockUser,
-          };
-      
-          const res = {
-            status: jest.fn(() => res),
-            json: jest.fn(),
-            send: jest.fn(),
-          };
-      
-          db.query.mockImplementation((query, values, callback) => {
-            if (query.includes('SELECT * FROM OptiFuelForecast.Users WHERE email = ?')) {
-              callback(null, []);
-            } else if (query.includes('INSERT INTO OptiFuelForecast.Users')) {
-              callback(null, { insertId: 1 });
-            }
-          });
-      
-          await register(req, res);
-      
-          expect(res.status).toHaveBeenCalledWith(201);
-          expect(res.send).toHaveBeenCalledWith('User has been registered successfully.');
-        });
-      
-        it('should return 409 if user already exists', async () => {
-          const mockUser = {
-            email: 'test@gmail.com',
-            username: 'testuser',
-            password: bcrypt.hashSync('password', 10),
-          };
-      
-          const req = {
-            body: mockUser,
-          };
-      
-          const res = {
-            status: jest.fn(() => res),
-            json: jest.fn(),
-            send: jest.fn(),
-          };
-      
-          db.query.mockImplementation((query, values, callback) => {
-            if (query.includes('SELECT * FROM OptiFuelForecast.Users WHERE email = ?')) {
-              callback(null, [mockUser]);
-            }
-          });
-      
-          await register(req, res);
-      
-          expect(res.status).toHaveBeenCalledWith(409);
-          expect(res.json).toHaveBeenCalledWith('User already exists');
-        });
-    });
-    describe('login', () => {
-        it('should log in a user', async () => {
-          const mockUser = {
-            email: 'test@gmail.com',
-            username: 'testuser',
-            password: bcrypt.hashSync('password', 10),
-            firstname: 'Test',
-            lastname: 'User',
-          };
-      
-          const req = {
-            body: {
-              email: 'test@gmail.com',
-              password: 'password',
-            },
-          };
-      
-          const res = {
-            cookie: jest.fn(),
-            status: jest.fn(() => res),
-            json: jest.fn(),
-            send: jest.fn(),
-          };
-      
-          db.query.mockImplementation((query, values, callback) => {
-            if (query.includes('SELECT * FROM OptiFuelForecast.Users WHERE email = ?')) {
-              callback(null, [mockUser]);
-            }
-          });
-      
-          await login(req, res);
-      
-          expect(res.status).toHaveBeenCalledWith(200);
-          expect(res.json).toHaveBeenCalledWith(expect.objectContaining({
-            message: "User has been logged in successfully",
-            username: mockUser.username,
-            firstname: mockUser.firstname,
-            lastname: mockUser.lastname,
-          }));
-          expect(res.cookie).toHaveBeenCalledWith('token', expect.any(String), {httpOnly: true, sameSite: 'strict'});
-        });
-      
-        it('should return 404 if user does not exist', async () => {
-          const req = {
-            body: {
-              email: 'test@gmail.com',
-              password: 'password',
-            },
-          };
-      
-          const res = {
-            status: jest.fn(() => res),
-            json: jest.fn(),
-          };
-      
-          db.query.mockImplementation((query, values, callback) => {
-            if (query.includes('SELECT * FROM OptiFuelForecast.Users WHERE email = ?')) {
-              callback(null, []);
-            }
-          });
-      
-          await login(req, res);
-      
-          expect(res.status).toHaveBeenCalledWith(404);
-          expect(res.json).toHaveBeenCalledWith('User does not exist');
-        });
-      
-        it('should return 401 if password is invalid', async () => {
-          const mockUser = {
-            email: 'test@gmail.com',
-            username: 'testuser',
-            password: bcrypt.hashSync('wrongpassword', 10),
-          };
-      
-          const req = {
-            body: {
-              email: 'test@gmail.com',
-              password: 'password',
-            },
-          };
-      
-          const res = {
-            status: jest.fn(() => res),
-            json: jest.fn(),
-          };
-      
-          db.query.mockImplementation((query, values, callback) => {
-            if (query.includes('SELECT * FROM OptiFuelForecast.Users WHERE email = ?')) {
-              callback(null, [mockUser]);
-            }
-          });
-      
-          await login(req, res);
-      
-          expect(res.status).toHaveBeenCalledWith(401);
-          expect(res.json).toHaveBeenCalledWith('Invalid password.');
-        });
-    });
-
-    describe('logout', () => {
-        it('should log out a user', () => {
-          const req = {};
-      
-          const res = {
-            clearCookie: jest.fn(),
-            status: jest.fn(() => res),
-            json: jest.fn(),
-          };
-      
-          logout(req, res);
-      
-          expect(res.clearCookie).toHaveBeenCalledWith('token', {httpOnly: true, sameSite: 'strict'});
-          expect(res.status).toHaveBeenCalledWith(200);
-          expect(res.json).toHaveBeenCalledWith({ message: "User has been logged out successfully." });
-        });
+  
+    test('should login an existing user', async () => {
+      const password = 'password';
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(password, salt);
+  
+      db.query.mockImplementation((query, values, callback) => {
+        if (query.startsWith('SELECT')) {
+          callback(null, [{ email: 'test@test.com', password: hash }]); // Mock existing user
+        }
       });
+  
+      const response = await request(app)
+        .post('/login')
+        .send({ email: 'test@test.com', password: password });
+  
+      expect(response.status).toBe(200);
+      expect(response.body.message).toBe('User has been logged in successfully');
+    });
+  
+    test('should not login a non-existing user', async () => {
+      db.query.mockImplementation((query, values, callback) => {
+        if (query.startsWith('SELECT')) {
+          callback(null, []); // Mock no existing user
+        }
+      });
+  
+      const response = await request(app)
+        .post('/login')
+        .send({ email: 'test@test.com', password: 'password' });
+  
+      expect(response.status).toBe(404);
+      expect(response.body).toBe('User does not exist');
+    });
+  
+    test('should not login a user with wrong password', async () => {
+      const password = 'password';
+      const salt = bcrypt.genSaltSync(10);
+      const hash = bcrypt.hashSync(password, salt);
+  
+      db.query.mockImplementation((query, values, callback) => {
+        if (query.startsWith('SELECT')) {
+          callback(null, [{ email: 'test@test.com', password: hash }]); // Mock existing user
+        }
+      });
+  
+      const response = await request(app)
+        .post('/login')
+        .send({ email: 'test@test.com', password: 'wrongpassword' });
+  
+      expect(response.status).toBe(401);
+      expect(response.body).toBe('Invalid password.');
+    });
+  
+    test('should handle database errors', async () => {
+      db.query.mockImplementation((query, values, callback) => {
+        callback(new Error('Database error')); // Mock database error
+      });
+  
+      const response = await request(app)
+        .post('/login')
+        .send({ email: 'test@test.com', password: 'password' });
+  
+      expect(response.status).toBe(500);
+      expect(response.text).toBe('Error in server');
+    });
+  });
+
+  describe('register function', () => {
+    let app;
+  
+    beforeEach(() => {
+      app = express();
+      app.use(express.json());
+      app.post('/register', register);
+    });
+  
+    afterEach(() => {
+      jest.clearAllMocks(); // Clear all mocks after each test
+    });
+  
+    test('should register a new user', async () => {
+      db.query.mockImplementation((query, values, callback) => {
+        if (query.startsWith('SELECT')) {
+          callback(null, []); // Mock no existing user
+        } else if (query.startsWith('INSERT')) {
+          callback(null, { insertId: 1 }); // Mock successful insert
+        }
+      });
+  
+      const response = await request(app)
+        .post('/register')
+        .send({ email: 'test@test.com', username: 'test', password: 'password' });
+  
+      expect(response.status).toBe(201);
+      expect(response.text).toBe('User has been registered successfully.');
+    });
+  
+    test('should not register an existing user', async () => {
+      db.query.mockImplementation((query, values, callback) => {
+        if (query.startsWith('SELECT')) {
+          callback(null, [{ email: 'test@test.com' }]); // Mock existing user
+        }
+      });
+  
+      const response = await request(app)
+        .post('/register')
+        .send({ email: 'test@test.com', username: 'test', password: 'password' });
+  
+      expect(response.status).toBe(409);
+      expect(response.body).toBe('User already exists');
+    });
+  
+    test('should handle database errors', async () => {
+      db.query.mockImplementation((query, values, callback) => {
+        callback(new Error('Database error')); // Mock database error
+      });
+  
+      const response = await request(app)
+        .post('/register')
+        .send({ email: 'test@test.com', username: 'test', password: 'password' });
+  
+      expect(response.status).toBe(500);
+      expect(response.text).toBe('Error in server');
+    });
+  });
+
+  describe('logout function', () => {
+    let app;
+  
+    beforeEach(() => {
+      app = express();
+      app.use(express.json());
+      app.post('/logout', logout);
+    });
+  
+    test('should logout a user', async () => {
+      const response = await request(app).post('/logout');
+  
+      expect(response.status).toBe(200);
+      expect(response.body.message).toBe('User has been logged out successfully.');
+      expect(response.headers['set-cookie']).toContainEqual(expect.stringContaining('token=;')); // Check that the cookie has been cleared
+    });
+  });
 });

@@ -17,6 +17,7 @@ const getFuelQuotes = async (req, res) => {
         
     });
 };
+
 const calculateFuelQuote = async (req, res) => {
     const { address, city, state, zipcode, date, gallonsRequested } = req.body;
     if (!address || !city || !state || !zipcode || !date || !gallonsRequested) {
