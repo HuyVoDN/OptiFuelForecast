@@ -19,12 +19,12 @@ export const SidebarData = () =>{
             path: `/${username}/quote`,
             cName:'sidebar-text'
         },
-        {
-            //dont think we'll need settings for now, dont touch the button
-            title:"Settings",
-            path:`/${username}/settings`,
-            cName:'sidebar-text'
-        }
+        // {
+        //     //dont think we'll need settings for now, dont touch the button
+        //     title:"Settings",
+        //     path:`/${username}/settings`,
+        //     cName:'sidebar-text'
+        // }
     
     ];
 };

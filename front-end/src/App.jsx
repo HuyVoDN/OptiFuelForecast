@@ -11,7 +11,7 @@ import ClientProfile from './pages/ClientProfile.jsx';
 import { AuthContext, AuthProvider } from './context/authContext.jsx';
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from './components/sidebar/Sidebar.jsx';
+// import Sidebar from './components/sidebar/Sidebar.jsx';
 
 const Layout = () => {
     return (
@@ -66,10 +66,10 @@ const router = createBrowserRouter([
                 path: "/:username/profile", //technically its still hardcoded
                 element: <ProtectedRoute><ClientProfile /></ProtectedRoute>
             },
-            {
-                path: "/:username/settings",
-                element:<div><Sidebar/><h1>Settings Page.</h1></div>
-            }
+            // {
+            //     path: "/:username/settings",
+            //     element:<div><Sidebar/><h1>Settings Page.</h1></div>
+            // }
             
         ]
     },

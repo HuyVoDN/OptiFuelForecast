@@ -35,7 +35,7 @@ function SignUpForm() {
 
         if (password === confirmPassword) {
             // login logic here (e.g., API call, authentication)
-            Axios.post(`${import.meta.VITE_SERVER_URL}/auth/register`, {
+            Axios.post(`${import.meta.env.VITE_SERVER_URL}/auth/register`, {
                 email: email,
                 username: username,
                 password: password,
