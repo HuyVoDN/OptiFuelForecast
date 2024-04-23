@@ -1,7 +1,7 @@
 class PricingModule {
     constructor(gallonsRequested, isOutOfState, isRepeatCustomer) {
         this.gallonsRequested = gallonsRequested; 
-        this.locationFactor = 0.02; // either 0.04 or 0.02 for in Texas vs out of Texas
+        this.locationFactor = 0.02; // either 0.04 or 0.02 for in out of Texas vs in Texas
         this.rateHistoryFactor = 0; // either -0.01 or 0.00 for repeat customers vs new
         this.gallonsFactor = 0.03; // either 0.02 or 0.03 for over 1000 gallons vs under 1000
         this.isOutOfState = isOutOfState; 

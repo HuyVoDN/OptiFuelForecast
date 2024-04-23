@@ -11,9 +11,7 @@ describe('Test for authController', () => {
     jest.resetAllMocks();
 });
 
-afterAll(() => {
-    closeConnection();
-});
+
   describe('login function', () => {
     let app;
   
@@ -28,19 +26,19 @@ afterAll(() => {
     });
   
     test('should login an existing user', async () => {
-      const password = 'password';
+      const password = '123';
       const salt = bcrypt.genSaltSync(10);
       const hash = bcrypt.hashSync(password, salt);
   
       db.query.mockImplementation((query, values, callback) => {
         if (query.startsWith('SELECT')) {
-          callback(null, [{ email: 'test@test.com', password: hash }]); // Mock existing user
+          callback(null, [{ email: 'kevin@gmail.com', password: hash }]); // Mock existing user
         }
       });
   
       const response = await request(app)
         .post('/login')
-        .send({ email: 'test@test.com', password: password });
+        .send({ email: 'kevin@gmail.com', password: password });
   
       expect(response.status).toBe(200);
       expect(response.body.message).toBe('User has been logged in successfully');

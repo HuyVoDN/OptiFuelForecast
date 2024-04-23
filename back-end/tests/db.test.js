@@ -1,5 +1,5 @@
-import { db } from "../db.js";
-import request from 'supertest';
+const { db, closeConnection } = require("../db.js");
+
 
 describe('Database Connection',  () => {
 
