@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Logo from "../../assets/OptiFuelForecast_removed_background.png";
 import "./Footer.scss";
-import Logo from "../../assets/optifuelforecastlogo.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
@@ -11,7 +10,7 @@ const Footer = () => {
         // Update current year when component mounts
         setCurrentYear(new Date().getFullYear());
     }, []);
-
+    
     return (
         <footer className="footer">
 

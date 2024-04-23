@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider, Route, Outlet } from 'react-router-dom';
-import Footer from "./components/footer/Footer.jsx";
 import About from "./pages/about/About.jsx";
 import Home from "./pages/Home.jsx";
 import Signup from "./pages/auth/signup/Signup.jsx";
@@ -18,7 +17,6 @@ const Layout = () => {
         <>
             <Navbar />
             <Outlet />
-            <Footer />
         </>
     );
 };
