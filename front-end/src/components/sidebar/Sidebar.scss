@@ -2,16 +2,18 @@ $primary-color-darkblue: rgb(0, 0, 112);
 
 .sidebar
 {
-    bottom: 0;
+    //bottom: 0;
     position:sticky;
     display:flex;
-    justify-content: flex-start;
+    justify-content:flex-start;
     flex-direction: column;
     margin: 3rem 4rem;
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
     .sidebar-client-profile
     {
+        display: flex;
+        flex-direction: column;
         .avatar
         {
             width: 175px;

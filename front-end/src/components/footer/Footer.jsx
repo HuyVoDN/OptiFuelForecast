@@ -1,9 +1,17 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import Logo from "../../assets/OptiFuelForecast_removed_background.png";
 import "./Footer.scss";
 import Logo from "../../assets/optifuelforecastlogo.png";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+    const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
+    useEffect(() => {
+        // Update current year when component mounts
+        setCurrentYear(new Date().getFullYear());
+    }, []);
+
     return (
         <footer className="footer">
 
@@ -18,14 +26,17 @@ const Footer = () => {
             <Link className="link" to='/about'>About</Link>
         </div>
 
-        <div className="footer-content">
-            <p>OptiFuelForecast</p>
-        </div>
+            {/* <div className="footer-content">
+                <p>OptiFuelForecast</p>
+            </div> */}
 
-        <div className="copyright">
-            <p>&copy; 2024 OptiFuelForecast. All rights reserved.</p>
-        </div>
+            <div className="copyright">
+                <p> Copyright &copy; <span>{currentYear}</span> OptiFuelForecast. All rights reserved.</p>
+            </div>
 
+            {/* <div className="logo">
+                <img src={Logo} alt="Logo"/>
+            </div>  */}
         </footer>
     );
 };
