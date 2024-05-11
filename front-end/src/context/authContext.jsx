@@ -7,8 +7,10 @@ export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
     token: null,
     username: null,
-    isAuthenticated: false,
+    isAuthenticated: sessionStorage.getItem('isAuthenticated') === 'true' ? true : false,
   });
+
+
 
   const login = async (email, password) => {
     try {
@@ -23,6 +25,8 @@ export const AuthProvider = ({ children }) => {
         isAuthenticated: true,
       });
 
+      // Store the authentication state in the session storage
+      sessionStorage.setItem('isAuthenticated', true);
 
       sessionStorage.setItem('firstname', response.data.firstname);
       sessionStorage.setItem('lastname', response.data.lastname);
@@ -43,6 +47,9 @@ export const AuthProvider = ({ children }) => {
         username: null,
         isAuthenticated: false,
       });
+
+      // Remove the authentication state from the session storage
+      sessionStorage.removeItem('isAuthenticated');
 
       sessionStorage.removeItem('firstname');
       sessionStorage.removeItem('lastname');

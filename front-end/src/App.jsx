@@ -24,7 +24,7 @@ const Layout = () => {
 const ProtectedRoute = ({ children }) => {
     const navigate = useNavigate();
     const { authState } = useContext(AuthContext);
-    
+
     useEffect(() => {
         if(!authState.isAuthenticated) {
         navigate('/login');
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
             //     path: "/:username/settings",
             //     element:<div><Sidebar/><h1>Settings Page.</h1></div>
             // }
-            
+
         ]
     },
     {
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
 function App() {
     return (
             <AuthProvider>
-            <RouterProvider router={router} />   
+            <RouterProvider router={router} />
             </AuthProvider>
     );
 }

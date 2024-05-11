@@ -4,7 +4,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import { TextField, Button, Select, FormControl, InputLabel, MenuItem } from '@mui/material';
 import Sidebar from '../components/sidebar/Sidebar';
-import { Drawer } from '@mui/material';
 import { STATES } from '../constants/stateOptions';
 import './ClientProfile.scss';
 
@@ -147,7 +146,7 @@ const ClientProfile = () => {
                                         {option.label}
                                     </MenuItem>
                                 ))}
-        
+
                                 </Select>
                             </FormControl>
                             <TextField
