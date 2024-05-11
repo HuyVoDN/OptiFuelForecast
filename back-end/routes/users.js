@@ -2,7 +2,7 @@
 // import {userData, userUpdater} from "../controllers/usersController.js";
 
 const express = require("express");
-const {userData, userUpdater} = require("../controllers/usersController.js");4
+const {userData, userUpdater} = require("../controllers/usersController.js");
 
 const router = express.Router();
 
