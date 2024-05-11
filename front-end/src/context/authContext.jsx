@@ -6,11 +6,9 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [authState, setAuthState] = useState({
     token: null,
-    username: null,
+    username: sessionStorage.getItem('username') === 'null' ? null : sessionStorage.getItem('username'),
     isAuthenticated: sessionStorage.getItem('isAuthenticated') === 'true' ? true : false,
   });
-
-
 
   const login = async (email, password) => {
     try {
@@ -27,7 +25,7 @@ export const AuthProvider = ({ children }) => {
 
       // Store the authentication state in the session storage
       sessionStorage.setItem('isAuthenticated', true);
-
+      sessionStorage.setItem('username', response.data.username);
       sessionStorage.setItem('firstname', response.data.firstname);
       sessionStorage.setItem('lastname', response.data.lastname);
       return response;
